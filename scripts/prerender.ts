@@ -1,0 +1,138 @@
+/**
+ * Vue Prerender 腳本
+ *
+ * 將已知路由預先渲染成靜態 HTML，存入 www/ 目錄。
+ * Cloudflare ASSETS 會優先提供靜態檔案，減少 Worker 計算量。
+ *
+ * 執行方式：npm run prerender
+ */
+import { createSSRApp } from 'vue'
+import { renderToString } from '@vue/server-renderer'
+import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'fs'
+import { resolve, dirname } from 'path'
+import { marked } from 'marked'
+import { getHead, renderHeadTags } from '../src/ssr/heads'
+import { createServer } from 'vite'
+import vue from '@vitejs/plugin-vue'
+
+// 因為 prerender 在 Node.js 執行，需要 createRequire 解析 .vue 檔
+// 此處直接用 tsx 執行，Vite 的 SSR build 會輸出可複用模組
+// 若要在 CI 中執行，建議先 `vite build --ssr` 再執行此腳本
+
+const ROOT = resolve(process.cwd())
+const WWW = resolve(ROOT, 'www')
+const ARTICLES_DIR = resolve(WWW, 'articles_for_prototype')
+
+function buildPage(headTags: string, bodyHtml: string): string {
+  return `<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    ${headTags}
+  </head>
+  <body>
+    ${bodyHtml}
+  </body>
+</html>`
+}
+
+function ensureDir(filePath: string) {
+  const dir = dirname(filePath)
+  if (!existsSync(dir)) {
+    mkdirSync(dir, { recursive: true })
+  }
+}
+
+function writeHtml(outputPath: string, html: string) {
+  ensureDir(outputPath)
+  writeFileSync(outputPath, html, 'utf-8')
+  console.log(`✓ 已生成：${outputPath.replace(ROOT, '')}`)
+}
+
+interface ArticleInfo {
+  slug: string
+  title: string
+  date: string
+  summary: string
+}
+
+// 與 src/views/index.vue 保持同步的文章清單
+const ARTICLES: ArticleInfo[] = [
+  {
+    slug: '芙蓉說',
+    title: '芙蓉說',
+    date: '2012.10.01',
+    summary: '芙蓉風華，一日三幻化——晨迎朝露，絳極離枝，功成身退，乃合天道。',
+  },
+  {
+    slug: '走路',
+    title: '走路',
+    date: '2012.05.06',
+    summary: '在山上，要走路。走山路，是不說話的。',
+  },
+]
+
+async function prerenderIndex(IndexView: object) {
+  const vueApp = createSSRApp(IndexView)
+  const bodyHtml = await renderToString(vueApp)
+  const headTags = renderHeadTags(getHead('/'))
+  const html = buildPage(headTags, bodyHtml)
+  writeHtml(resolve(WWW, 'index.html'), html)
+}
+
+async function prerenderArticle(ArticleView: object, article: ArticleInfo) {
+  const mdPath = resolve(ARTICLES_DIR, `${article.slug}.md`)
+  if (!existsSync(mdPath)) {
+    console.warn(`⚠ 找不到 markdown 檔：${mdPath}`)
+    return
+  }
+
+  const markdown = readFileSync(mdPath, 'utf-8')
+  const contentHtml = await marked.parse(markdown) as string
+
+  const vueApp = createSSRApp(ArticleView as Parameters<typeof createSSRApp>[0], {
+    contentHtml,
+    slug: article.slug,
+  })
+  const bodyHtml = await renderToString(vueApp)
+  const headTags = renderHeadTags(getHead(`/article/${article.slug}`))
+  const html = buildPage(headTags, bodyHtml)
+
+  // 輸出到 www/article/<slug>/index.html，讓 ASSETS 以目錄形式提供
+  writeHtml(resolve(WWW, 'article', article.slug, 'index.html'), html)
+}
+
+async function main() {
+  console.log('🚀 開始 Vue Prerender...\n')
+
+  // 透過 Vite 的 SSR module loader 載入 .vue，避免 Node ESM 直接解析副檔名失敗
+  const vite = await createServer({
+    configFile: false,
+    appType: 'custom',
+    logLevel: 'error',
+    root: ROOT,
+    server: { middlewareMode: true },
+    plugins: [vue()],
+  })
+
+  try {
+    const { default: IndexView } = await vite.ssrLoadModule('/src/views/index.vue')
+    const { default: ArticleView } = await vite.ssrLoadModule('/src/views/article.vue')
+
+    await prerenderIndex(IndexView)
+
+    for (const article of ARTICLES) {
+      await prerenderArticle(ArticleView, article)
+    }
+  } finally {
+    await vite.close()
+  }
+
+  console.log('\n✅ Prerender 完成！')
+  console.log('   靜態 HTML 已存入 www/ 目錄')
+  console.log('   Cloudflare ASSETS 會優先提供這些靜態頁面。')
+}
+
+main().catch((err) => {
+  console.error('Prerender 失敗：', err)
+  process.exit(1)
+})
