@@ -2,13 +2,14 @@
  * Vue Prerender 腳本
  *
  * 將已知路由預先渲染成靜態 HTML，存入 www/ 目錄。
+ * 若存在 public/，會先將其中靜態資產複製到 www/ 對應路徑（與 Vite publicDir 慣例一致）。
  * Cloudflare ASSETS 會優先提供靜態檔案，減少 Worker 計算量。
  *
  * 執行方式：npm run prerender
  */
 import { createSSRApp } from 'vue'
 import { renderToString } from '@vue/server-renderer'
-import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'fs'
+import { readFileSync, writeFileSync, mkdirSync, existsSync, cpSync } from 'fs'
 import { resolve, dirname } from 'path'
 import { marked } from 'marked'
 import { getHead, renderHeadTags } from '../src/ssr/heads'
@@ -21,7 +22,19 @@ import vue from '@vitejs/plugin-vue'
 
 const ROOT = resolve(process.cwd())
 const WWW = resolve(ROOT, 'www')
+const PUBLIC = resolve(ROOT, 'public')
 const ARTICLES_DIR = resolve(WWW, 'articles_for_prototype')
+
+/** 將 public/ 內容合併至 www/（路徑一對一對應）；若 public 不存在則略過。 */
+function copyPublicAssetsToWww() {
+  if (!existsSync(PUBLIC)) {
+    console.log('（略過）未找到 public/，不複製靜態資產\n')
+    return
+  }
+  console.log('📁 複製 public/ → www/ …')
+  cpSync(PUBLIC, WWW, { recursive: true, force: true })
+  console.log('   已完成靜態資產合併\n')
+}
 
 function buildPage(headTags: string, bodyHtml: string): string {
   return `<!doctype html>
@@ -103,6 +116,8 @@ async function prerenderArticle(ArticleView: object, article: ArticleInfo) {
 
 async function main() {
   console.log('🚀 開始 Vue Prerender...\n')
+
+  copyPublicAssetsToWww()
 
   // 透過 Vite 的 SSR module loader 載入 .vue，避免 Node ESM 直接解析副檔名失敗
   const vite = await createServer({

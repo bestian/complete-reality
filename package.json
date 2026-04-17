@@ -3,11 +3,12 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "dev": "vite dev",
-    "build": "vite build",
-    "preview": "vite preview",
-    "deploy": "vite build && wrangler deploy",
-    "prerender": "tsx scripts/prerender.ts"
+    "dev": "npm run copy-css && vite dev",
+    "build": "npm run copy-css && npx tsx scripts/prerender.ts && vite build",
+    "preview": "npm run build && vite preview",
+    "deploy": "npm run build && wrangler deploy",
+    "prerender": "npm run copy-css && npx tsx scripts/prerender.ts",
+    "copy-css": "cp node_modules/semantic-ui-css/semantic.min.css www/css/semantic.min.css"
   },
   "keywords": [],
   "author": "",
@@ -16,6 +17,7 @@
     "@vue/server-renderer": "^3.5.32",
     "hono": "^4.12.14",
     "marked": "^18.0.1",
+    "semantic-ui-css": "^2.5.0",
     "vue": "^3.5.32"
   },
   "devDependencies": {

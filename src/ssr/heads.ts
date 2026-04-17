@@ -45,6 +45,9 @@ export function renderHeadTags(config: HeadConfig): string {
     `<meta name="viewport" content="width=device-width, initial-scale=1" />`,
     `<title>${escapeHtml(config.title)}</title>`,
     `<meta property="og:title" content="${escapeHtml(config.ogTitle ?? config.title)}" />`,
+    `<link rel="stylesheet" href="/css/semantic.min.css" />`,
+    `<link rel="stylesheet" href="/css/site.css" />`,
+    `<link rel="stylesheet" href="/css/rwd.css" />`,
   ]
 
   if (config.description) {

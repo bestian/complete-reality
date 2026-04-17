@@ -7,10 +7,16 @@ import ArticleView from './views/article.vue'
 import { getHead, renderHeadTags } from './ssr/heads'
 
 type Bindings = {
-  ASSETS: {
+  ASSETS?: {
     fetch: (request: RequestInfo | URL, init?: RequestInit) => Promise<Response>
   }
 }
+
+/** 建置時打包；避免 preview／本機執行時缺少 ASSETS 綁定而拋錯。 */
+const bundledArticles = import.meta.glob<string>('../www/articles_for_prototype/*.md', {
+  query: '?raw',
+  import: 'default',
+})
 
 const app = new Hono<{ Bindings: Bindings }>()
 
@@ -36,20 +42,36 @@ app.get('/', async (c) => {
 app.get('/article/:slug', async (c) => {
   const slug = decodeURIComponent(c.req.param('slug'))
   const markdownPath = `/articles_for_prototype/${slug}.md`
-  const requestUrl = new URL(markdownPath, c.req.url)
+  const bundledKey = `../www/articles_for_prototype/${slug}.md`
 
-  const response = await c.env.ASSETS.fetch(requestUrl)
-  if (!response.ok) {
-    return c.text('找不到文章', 404)
+  let markdown: string | undefined
+
+  if (c.env.ASSETS) {
+    const requestUrl = new URL(markdownPath, c.req.url)
+    const response = await c.env.ASSETS.fetch(requestUrl)
+    if (response.ok) markdown = await response.text()
   }
 
-  const markdown = await response.text()
+  if (markdown === undefined) {
+    const load = bundledArticles[bundledKey]
+    if (load) markdown = await load()
+  }
+
+  if (markdown === undefined) {
+    return c.text('找不到文章', 404)
+  }
   const contentHtml = await marked.parse(markdown) as string
 
   const vueApp = createSSRApp(ArticleView, { contentHtml, slug })
   const bodyHtml = await renderToString(vueApp)
   const headTags = renderHeadTags(getHead(`/article/${slug}`))
   return c.html(buildPage(headTags, bodyHtml))
+})
+
+// 靜態資源 fallback：/css/*.css、圖片等未匹配路由交給 ASSETS 處理
+app.get('*', async (c) => {
+  if (!c.env.ASSETS) return c.notFound()
+  return c.env.ASSETS.fetch(c.req.raw)
 })
 
 export default app
