@@ -11,7 +11,6 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
   "description": "",
   "dependencies": {
     "@vue/server-renderer": "^3.5.32",
