@@ -11,7 +11,7 @@ app.get('/', (c) => {
     <title>complete-reality</title>
   </head>
   <body>
-    <h1>complete-reality</h1>
+    <h1>流水全真--以佛煉心、以儒應世、以道護體</h1>
     <p>Hono Worker is running.</p>
   </body>
 </html>`)
