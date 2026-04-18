@@ -221,10 +221,6 @@ h1.ui.header.site-title {
     font-size: 18pt !important;
   }
 
-  .tagline {
-    color: #333 !important;
-  }
-
   .ui.horizontal.divider.section-divider::before,
   .ui.horizontal.divider.section-divider::after {
     background-color: #999 !important;

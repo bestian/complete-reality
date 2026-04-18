@@ -208,8 +208,9 @@ h1.ui.header.site-title {
 }
 
 .tagline {
-  color: var(--muted);
-  font-size: 1.12rem;
+  color: var(--secondary-dark);
+  font-size: 1.62rem;
+  font-weight: 600;
   letter-spacing: 0.08em;
   margin: 0;
 }
