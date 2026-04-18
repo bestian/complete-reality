@@ -29,12 +29,12 @@
 
 .site-header .ui.header.site-title,
 h1.ui.header.site-title {
-  font-size: 1.65rem !important;
+  font-size: 1.8rem !important;
   letter-spacing: 0.1em !important;
 }
 
 .tagline {
-  font-size: 0.95rem;
+  font-size: 1rem;
 }
 
 .ui.horizontal.divider.section-divider {
@@ -47,7 +47,7 @@ h1.ui.header.site-title {
 }
 
 .ui.items.article-list .header.article-title {
-  font-size: 1.05rem !important;
+  font-size: 1.12rem !important;
 }
 
 .article-body h2 {
@@ -92,16 +92,16 @@ h1.ui.header.site-title {
 
   .site-header .ui.header.site-title,
   h1.ui.header.site-title {
-    font-size: 1.95rem !important;
+    font-size: 2.1rem !important;
     letter-spacing: 0.12em !important;
   }
 
   .tagline {
-    font-size: 1rem;
+    font-size: 1.08rem;
   }
 
   .ui.items.article-list .header.article-title {
-    font-size: 1.1rem !important;
+    font-size: 1.16rem !important;
   }
 
   .article-body h2 {
@@ -132,12 +132,12 @@ h1.ui.header.site-title {
 
   .site-header .ui.header.site-title,
   h1.ui.header.site-title {
-    font-size: 2.2rem !important;
+    font-size: 2.35rem !important;
     letter-spacing: 0.15em !important;
   }
 
   .tagline {
-    font-size: 1.05rem;
+    font-size: 1.12rem;
   }
 
   .ui.horizontal.divider.section-divider {
@@ -150,7 +150,7 @@ h1.ui.header.site-title {
   }
 
   .ui.items.article-list .header.article-title {
-    font-size: 1.15rem !important;
+    font-size: 1.22rem !important;
   }
 
   .article-body h2 {
@@ -203,6 +203,16 @@ h1.ui.header.site-title {
     border-radius: 0 !important;
     padding: 0 0 0.5rem !important;
     margin-bottom: 1rem !important;
+    overflow: visible !important;
+  }
+
+  .site-header::before,
+  .site-header::after {
+    display: none !important;
+  }
+
+  .site-header-wave {
+    display: none !important;
   }
 
   .site-header .ui.header.site-title,

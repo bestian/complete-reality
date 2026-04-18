@@ -1,21 +1,21 @@
 /* ============================================================
    site.css — 流水全真 自訂主題
    相當於 site/globals/site.variables 的 CSS 自訂屬性版本
-   主色調：淡藍  副色調：淺紫
+   主色調：淺紫  副色調：淡藍
    載入順序：semantic.min.css → site.css → rwd.css（覆蓋優先）
    ============================================================ */
 
 /* ---------- CSS 自訂屬性 (site variables) ---------- */
 :root {
-  /* 主色調：淡藍 */
-  --primary:       #a8d8ea;
-  --primary-mid:   #64b5f6;
-  --primary-dark:  #1976d2;
+  /* 主色調：淺紫 */
+  --primary:       #ede7f6;
+  --primary-mid:   #b39ddb;
+  --primary-dark:  #7e57c2;
 
-  /* 副色調：淺紫 */
-  --secondary:     #ede7f6;
-  --secondary-mid: #b39ddb;
-  --secondary-dark:#7e57c2;
+  /* 副色調：淡藍 */
+  --secondary:     #a8d8ea;
+  --secondary-mid: #64b5f6;
+  --secondary-dark:#1976d2;
 
   /* 暖色系底色（既有設計，保留） */
   --bg:       #fdfaf6;
@@ -41,7 +41,7 @@ body {
   font-family: var(--font-serif) !important;
   background: var(--bg);
   color: var(--text);
-  font-size: 16px;
+  font-size: 18px;
   line-height: 1.75;
 }
 
@@ -56,26 +56,152 @@ body {
 
 /* ============================================================
    頁首
-   淡藍 + 淺紫 輕柔漸層底色
+   淺粉藍 + 粉紫漸層、::before 水紋、::after 白／紫星點
    ============================================================ */
+@keyframes site-header-water {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1) rotate(0deg);
+  }
+  28% {
+    transform: translate3d(2.2%, -2.8%, 0) scale(1.05) rotate(0.45deg);
+  }
+  55% {
+    transform: translate3d(-2.5%, 1.2%, 0) scale(0.97) rotate(-0.35deg);
+  }
+  78% {
+    transform: translate3d(1%, 2%, 0) scale(1.02) rotate(0.2deg);
+  }
+}
+
+@keyframes site-header-sparkle {
+  0%,
+  100% {
+    opacity: 0.78;
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    opacity: 1;
+    transform: translate3d(-1.8%, 1.4%, 0);
+  }
+}
+
+@keyframes site-header-wave-edge {
+  0% {
+    background-position:
+      0 100%,
+      28px 100%,
+      0 0;
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    background-position:
+      44px 100%,
+      -8px 100%,
+      0 0;
+    transform: translate3d(0, -2px, 0);
+  }
+  100% {
+    background-position:
+      88px 100%,
+      -44px 100%,
+      0 0;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
 .site-header {
+  position: relative;
+  overflow: hidden;
   text-align: center;
   padding: 2.2rem 1rem 1.8rem;
   margin-bottom: 2rem;
   border-radius: 8px;
   background: linear-gradient(
-    135deg,
-    rgba(168, 216, 234, 0.18) 0%,
-    rgba(179, 157, 219, 0.12) 100%
+    152deg,
+    #eaf3fb 0%,
+    #f5f0fa 38%,
+    #e8f4fc 72%,
+    #f2ecf8 100%
   );
-  border-bottom: 2px solid var(--primary);
+  border-bottom: 2px solid var(--secondary);
+}
+
+.site-header::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  inset: -45% -28%;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 58% 45% at 32% 92%, rgba(168, 216, 234, 0.48), transparent 60%),
+    radial-gradient(ellipse 52% 40% at 68% 88%, rgba(179, 157, 219, 0.34), transparent 58%),
+    radial-gradient(ellipse 48% 36% at 48% 96%, rgba(255, 255, 255, 0.3), transparent 52%);
+  animation: site-header-water 20s ease-in-out infinite;
+  will-change: transform;
+}
+
+.site-header::after {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(1.4px 1.4px at 16px 22px, rgba(255, 255, 255, 0.95), transparent),
+    radial-gradient(1.2px 1.2px at 44px 10px, rgba(237, 231, 246, 0.92), transparent),
+    radial-gradient(1px 1px at 9px 48px, rgba(179, 157, 219, 0.68), transparent),
+    radial-gradient(1.5px 1.5px at 58px 36px, rgba(255, 255, 255, 0.82), transparent),
+    radial-gradient(1px 1px at 72px 18px, rgba(168, 216, 234, 0.5), transparent);
+  background-size: 76px 68px, 92px 84px, 64px 72px, 88px 76px, 104px 96px;
+  background-position:
+    0 0,
+    14px 28px,
+    33px 6px,
+    8px 40px,
+    52px 12px;
+  animation: site-header-sparkle 14s ease-in-out infinite;
+}
+
+.site-header-inner {
+  position: relative;
+  z-index: 1;
+}
+
+.site-header-wave {
+  position: absolute;
+  left: -6%;
+  right: -6%;
+  bottom: -6px;
+  height: 3rem;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.92;
+  background:
+    radial-gradient(36px 18px at 18px 28px, rgba(255, 255, 255, 0.82) 0 62%, transparent 64%) repeat-x,
+    radial-gradient(42px 20px at 42px 26px, rgba(179, 157, 219, 0.24) 0 58%, transparent 60%) repeat-x,
+    linear-gradient(to top, rgba(255, 255, 255, 0.32), rgba(255, 255, 255, 0) 72%);
+  background-size:
+    88px 34px,
+    96px 38px,
+    100% 100%;
+  animation: site-header-wave-edge 11s ease-in-out infinite;
+  will-change: background-position, transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-header::before,
+  .site-header::after,
+  .site-header-wave {
+    animation: none !important;
+  }
 }
 
 /* 覆蓋 Semantic UI .ui.header 的字型與顏色 */
 .site-header .ui.header.site-title,
 h1.ui.header.site-title {
   font-family: var(--font-serif) !important;
-  font-size: 2.2rem !important;
+  font-size: 2.35rem !important;
   letter-spacing: 0.15em;
   color: var(--heading) !important;
   margin: 0 0 0.5rem !important;
@@ -83,7 +209,7 @@ h1.ui.header.site-title {
 
 .tagline {
   color: var(--muted);
-  font-size: 1.05rem;
+  font-size: 1.12rem;
   letter-spacing: 0.08em;
   margin: 0;
 }
@@ -132,9 +258,9 @@ h1.ui.header.site-title {
 /* 標題連結：淡藍深色 */
 .ui.items.article-list .header.article-title {
   font-family: var(--font-serif) !important;
-  font-size: 1.15rem !important;
+  font-size: 1.22rem !important;
   font-weight: 600;
-  color: var(--primary-dark) !important;
+  color: var(--secondary-dark) !important;
   text-decoration: none;
 }
 
@@ -162,7 +288,7 @@ h1.ui.header.site-title {
 /* 摘要：暖棕色，細一點 */
 .ui.items.article-list .description.article-summary {
   font-family: var(--font-serif) !important;
-  font-size: 0.92rem;
+  font-size: 1rem;
   color: #6b4f35;
   line-height: 1.7;
   margin-top: 0.2rem;
@@ -172,7 +298,7 @@ h1.ui.header.site-title {
    頁尾分隔線
    ============================================================ */
 .footer-divider.ui.divider {
-  border-top-color: var(--primary) !important;
+  border-top-color: var(--secondary) !important;
   border-bottom-color: transparent !important;
 }
 
@@ -244,7 +370,7 @@ h1.ui.header.site-title {
 .article-body h2 {
   font-size: 1.5rem;
   letter-spacing: 0.05em;
-  border-bottom: 1px solid var(--primary);
+  border-bottom: 1px solid var(--secondary);
   padding-bottom: 0.35rem;
 }
 
@@ -327,12 +453,12 @@ a {
 
   .site-header .ui.header.site-title,
   h1.ui.header.site-title {
-    font-size: 1.7rem !important;
+    font-size: 1.85rem !important;
     letter-spacing: 0.1em;
   }
 
   .tagline {
-    font-size: 0.95rem;
+    font-size: 1rem;
   }
 
   .ui.items.article-list > .item.article-card {
@@ -353,7 +479,7 @@ a {
 
   .site-header .ui.header.site-title,
   h1.ui.header.site-title {
-    font-size: 2rem !important;
+    font-size: 2.12rem !important;
   }
 }
 

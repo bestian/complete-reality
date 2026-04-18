@@ -18,10 +18,13 @@ const articles = [
 <template>
   <div class="page">
 
-    <!-- 頁首：淡藍/淺紫漸層底色 -->
+    <!-- 頁首：淺粉藍／粉紫漸層、水紋、光點與下緣波浪動畫（樣式見 site.css） -->
     <header class="site-header">
-      <h1 class="ui header site-title">流水全真</h1>
-      <p class="tagline">以佛煉心・以儒應世・以道護體</p>
+      <div class="site-header-inner">
+        <h1 class="ui header site-title">流水全真</h1>
+        <p class="tagline">以佛煉心・以儒應世・以道護體</p>
+      </div>
+      <div class="site-header-wave" aria-hidden="true"></div>
     </header>
 
     <main class="main">
