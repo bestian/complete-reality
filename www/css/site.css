@@ -28,7 +28,7 @@
 
   --font-serif: 'Georgia', 'Noto Serif TC', serif;
   --max-width:  760px;
-  --site-header-wave-tile-width: 360px;
+  --site-header-wave-tile-width: 240px;
 }
 
 /* ============================================================
@@ -51,7 +51,9 @@ body {
    ============================================================ */
 .page {
   max-width: var(--max-width);
-  margin: 0 auto;
+  display: flex !important;
+  flex-direction: column !important;
+  margin: 0 auto !important;
   padding: 2rem 1.5rem;
 }
 
@@ -114,7 +116,6 @@ body {
     #e8f4fc 72%,
     #f2ecf8 100%
   );
-  border-bottom: 2px solid var(--secondary);
 }
 
 .site-header::before {
@@ -177,7 +178,7 @@ body {
   background-position:
     0 calc(100% - 2px),
     0 0;
-  animation: site-header-wave-flow 22s linear infinite;
+  animation: site-header-wave-flow 26s linear infinite;
   will-change: background-position;
 }
 

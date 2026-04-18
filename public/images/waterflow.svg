@@ -1,6 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="360" height="64" viewBox="0 0 360 64" fill="none">
+<svg xmlns="http://www.w3.org/2000/svg" width="240" height="64" viewBox="0 0 360 64" fill="none">
   <defs>
-    <path id="wave-stroke" d="M0 0C14 -6 30 -6 44 0S74 6 88 0" />
+    <path id="wave-stroke-long" d="M0 0C14 -6 30 -6 44 0S74 6 88 0" />
+    <path id="wave-stroke-medium" d="M0 0C13 -5.5 27 -5.5 40 0S67 5.5 80 0" />
+    <path id="wave-stroke-short" d="M0 0C12 -5 24 -5 36 0S60 5 72 0" />
+    <path id="wave-stroke-shorter" d="M0 0C10 -4.5 21 -4.5 31 0S52 4.5 62 0" />
     <linearGradient id="wave-highlight" x1="0" y1="0.5" x2="1" y2="0.5">
       <stop offset="0" stop-color="#f7fbff" stop-opacity="0" />
       <stop offset="0.14" stop-color="#f7fbff" stop-opacity="0.32" />
@@ -24,55 +27,55 @@
     </linearGradient>
   </defs>
   <g stroke-linecap="round" stroke-linejoin="round" fill="none">
-    <g transform="translate(8 18)">
-      <use href="#wave-stroke" stroke="url(#wave-highlight)" stroke-width="6.8" />
-      <use href="#wave-stroke" stroke="url(#wave-mid)" stroke-width="2.8" />
-      <use href="#wave-stroke" stroke="url(#wave-core)" stroke-width="1.55" />
+    <g transform="translate(0 18)">
+      <use href="#wave-stroke-medium" stroke="url(#wave-highlight)" stroke-width="6.8" />
+      <use href="#wave-stroke-medium" stroke="url(#wave-mid)" stroke-width="2.8" />
+      <use href="#wave-stroke-medium" stroke="url(#wave-core)" stroke-width="1.55" />
     </g>
-    <g transform="translate(80 18)">
-      <use href="#wave-stroke" stroke="url(#wave-highlight)" stroke-width="6.8" />
-      <use href="#wave-stroke" stroke="url(#wave-mid)" stroke-width="2.8" />
-      <use href="#wave-stroke" stroke="url(#wave-core)" stroke-width="1.55" />
+    <g transform="translate(69 18)">
+      <use href="#wave-stroke-long" stroke="url(#wave-highlight)" stroke-width="6.8" />
+      <use href="#wave-stroke-long" stroke="url(#wave-mid)" stroke-width="2.8" />
+      <use href="#wave-stroke-long" stroke="url(#wave-core)" stroke-width="1.55" />
     </g>
-    <g transform="translate(152 18)">
-      <use href="#wave-stroke" stroke="url(#wave-highlight)" stroke-width="6.8" />
-      <use href="#wave-stroke" stroke="url(#wave-mid)" stroke-width="2.8" />
-      <use href="#wave-stroke" stroke="url(#wave-core)" stroke-width="1.55" />
+    <g transform="translate(147 18)">
+      <use href="#wave-stroke-short" stroke="url(#wave-highlight)" stroke-width="6.8" />
+      <use href="#wave-stroke-short" stroke="url(#wave-mid)" stroke-width="2.8" />
+      <use href="#wave-stroke-short" stroke="url(#wave-core)" stroke-width="1.55" />
     </g>
-    <g transform="translate(224 18)">
-      <use href="#wave-stroke" stroke="url(#wave-highlight)" stroke-width="6.8" />
-      <use href="#wave-stroke" stroke="url(#wave-mid)" stroke-width="2.8" />
-      <use href="#wave-stroke" stroke="url(#wave-core)" stroke-width="1.55" />
+    <g transform="translate(213 18)">
+      <use href="#wave-stroke-medium" stroke="url(#wave-highlight)" stroke-width="6.8" />
+      <use href="#wave-stroke-medium" stroke="url(#wave-mid)" stroke-width="2.8" />
+      <use href="#wave-stroke-medium" stroke="url(#wave-core)" stroke-width="1.55" />
     </g>
-    <g transform="translate(296 18)">
-      <use href="#wave-stroke" stroke="url(#wave-highlight)" stroke-width="6.8" />
-      <use href="#wave-stroke" stroke="url(#wave-mid)" stroke-width="2.8" />
-      <use href="#wave-stroke" stroke="url(#wave-core)" stroke-width="1.55" />
+    <g transform="translate(286 18)">
+      <use href="#wave-stroke-short" stroke="url(#wave-highlight)" stroke-width="6.8" />
+      <use href="#wave-stroke-short" stroke="url(#wave-mid)" stroke-width="2.8" />
+      <use href="#wave-stroke-short" stroke="url(#wave-core)" stroke-width="1.55" />
     </g>
-    <g transform="translate(26 42)">
-      <use href="#wave-stroke" stroke="url(#wave-highlight)" stroke-width="6.8" />
-      <use href="#wave-stroke" stroke="url(#wave-mid)" stroke-width="2.8" />
-      <use href="#wave-stroke" stroke="url(#wave-core)" stroke-width="1.55" />
+    <g transform="translate(16 42)">
+      <use href="#wave-stroke-shorter" stroke="url(#wave-highlight)" stroke-width="6.8" />
+      <use href="#wave-stroke-shorter" stroke="url(#wave-mid)" stroke-width="2.8" />
+      <use href="#wave-stroke-shorter" stroke="url(#wave-core)" stroke-width="1.55" />
     </g>
-    <g transform="translate(98 42)">
-      <use href="#wave-stroke" stroke="url(#wave-highlight)" stroke-width="6.8" />
-      <use href="#wave-stroke" stroke="url(#wave-mid)" stroke-width="2.8" />
-      <use href="#wave-stroke" stroke="url(#wave-core)" stroke-width="1.55" />
+    <g transform="translate(92 42)">
+      <use href="#wave-stroke-medium" stroke="url(#wave-highlight)" stroke-width="6.8" />
+      <use href="#wave-stroke-medium" stroke="url(#wave-mid)" stroke-width="2.8" />
+      <use href="#wave-stroke-medium" stroke="url(#wave-core)" stroke-width="1.55" />
     </g>
-    <g transform="translate(170 42)">
-      <use href="#wave-stroke" stroke="url(#wave-highlight)" stroke-width="6.8" />
-      <use href="#wave-stroke" stroke="url(#wave-mid)" stroke-width="2.8" />
-      <use href="#wave-stroke" stroke="url(#wave-core)" stroke-width="1.55" />
+    <g transform="translate(159 42)">
+      <use href="#wave-stroke-short" stroke="url(#wave-highlight)" stroke-width="6.8" />
+      <use href="#wave-stroke-short" stroke="url(#wave-mid)" stroke-width="2.8" />
+      <use href="#wave-stroke-short" stroke="url(#wave-core)" stroke-width="1.55" />
     </g>
-    <g transform="translate(242 42)">
-      <use href="#wave-stroke" stroke="url(#wave-highlight)" stroke-width="6.8" />
-      <use href="#wave-stroke" stroke="url(#wave-mid)" stroke-width="2.8" />
-      <use href="#wave-stroke" stroke="url(#wave-core)" stroke-width="1.55" />
+    <g transform="translate(231 42)">
+      <use href="#wave-stroke-shorter" stroke="url(#wave-highlight)" stroke-width="6.8" />
+      <use href="#wave-stroke-shorter" stroke="url(#wave-mid)" stroke-width="2.8" />
+      <use href="#wave-stroke-shorter" stroke="url(#wave-core)" stroke-width="1.55" />
     </g>
-    <g transform="translate(314 42)">
-      <use href="#wave-stroke" stroke="url(#wave-highlight)" stroke-width="6.8" />
-      <use href="#wave-stroke" stroke="url(#wave-mid)" stroke-width="2.8" />
-      <use href="#wave-stroke" stroke="url(#wave-core)" stroke-width="1.55" />
+    <g transform="translate(292 42)">
+      <use href="#wave-stroke-shorter" stroke="url(#wave-highlight)" stroke-width="6.8" />
+      <use href="#wave-stroke-shorter" stroke="url(#wave-mid)" stroke-width="2.8" />
+      <use href="#wave-stroke-shorter" stroke="url(#wave-core)" stroke-width="1.55" />
     </g>
   </g>
 </svg>
