@@ -4,6 +4,8 @@ import { createSSRApp } from 'vue'
 import { renderToString } from '@vue/server-renderer'
 import IndexView from './views/index.vue'
 import ArticleView from './views/article.vue'
+import FavoritesView from './views/favorites.vue'
+import { getArticleBySlug } from './data/articles'
 import { getHead, renderHeadTags } from './ssr/heads'
 
 type Bindings = {
@@ -28,6 +30,8 @@ function buildPage(headTags: string, bodyHtml: string): string {
   </head>
   <body>
     ${bodyHtml}
+    <script type="module" src="/js/article-gestures.js"></script>
+    <script type="module" src="/js/favorites-page.js"></script>
   </body>
 </html>`
 }
@@ -41,6 +45,9 @@ app.get('/', async (c) => {
 
 app.get('/article/:slug', async (c) => {
   const slug = decodeURIComponent(c.req.param('slug'))
+  const path = `/article/${slug}`
+  const head = getHead(path)
+  const article = getArticleBySlug(slug)
   const markdownPath = `/articles_for_prototype/${slug}.md`
   const bundledKey = `../www/articles_for_prototype/${slug}.md`
 
@@ -62,9 +69,22 @@ app.get('/article/:slug', async (c) => {
   }
   const contentHtml = await marked.parse(markdown) as string
 
-  const vueApp = createSSRApp(ArticleView, { contentHtml, slug })
+  const vueApp = createSSRApp(ArticleView, {
+    contentHtml,
+    slug,
+    title: article?.title ?? slug,
+    description: article?.summary ?? head.description ?? '',
+    path,
+  })
   const bodyHtml = await renderToString(vueApp)
-  const headTags = renderHeadTags(getHead(`/article/${slug}`))
+  const headTags = renderHeadTags(head)
+  return c.html(buildPage(headTags, bodyHtml))
+})
+
+app.get('/favorites', async (c) => {
+  const vueApp = createSSRApp(FavoritesView)
+  const bodyHtml = await renderToString(vueApp)
+  const headTags = renderHeadTags(getHead('/favorites'))
   return c.html(buildPage(headTags, bodyHtml))
 })
 

@@ -1,18 +1,5 @@
 <script setup lang="ts">
-const articles = [
-  {
-    slug: '芙蓉說',
-    title: '芙蓉說',
-    date: '2012.10.01',
-    summary: '芙蓉風華，一日三幻化——晨迎朝露，絳極離枝，功成身退，乃合天道。',
-  },
-  {
-    slug: '走路',
-    title: '走路',
-    date: '2012.05.06',
-    summary: '在山上，要走路。走山路，是不說話的。',
-  },
-]
+import { articles } from '../data/articles'
 </script>
 
 <template>
@@ -28,6 +15,7 @@ const articles = [
     </header>
 
     <main class="main">
+
       <section class="article-section">
 
         <!-- 節標題用 Semantic UI horizontal divider -->
@@ -35,6 +23,12 @@ const articles = [
 
         <!-- 文章列表用 Semantic UI items -->
         <div class="ui relaxed items article-list">
+
+          <!-- 快速連結 -->
+          <div class="quick-links">
+            <a href="/favorites" class="quick-link-favorites">我的最愛</a>
+          </div>
+          
           <div
             v-for="article in articles"
             :key="article.slug"
@@ -52,7 +46,14 @@ const articles = [
             </div>
           </div>
         </div>
+      </section>
 
+      <!-- 我的最愛 -->
+      <section class="favorites-section">
+        <!-- 快速連結 -->
+        <div class="quick-links">
+          <a href="/favorites" class="quick-link-favorites">我的最愛</a>
+        </div>
       </section>
     </main>
 

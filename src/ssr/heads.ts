@@ -17,6 +17,11 @@ export const routeHeads: Record<string, HeadConfig> = {
     description: '流水全真，探索修身養性之道，融合佛、儒、道三家智慧。',
     keywords: '流水全真,佛,儒,道,修身,養性',
   },
+  '/favorites': {
+    title: '我的最愛 | 流水全真',
+    description: '查看你在本機瀏覽器收藏的文章清單。',
+    keywords: '我的最愛,收藏,文章',
+  },
   '/article/芙蓉說': {
     title: '芙蓉說 | 流水全真',
     description: '芙蓉風華，一日三幻化：晨迎朝露，白淨無瑕，隨陽氣上昇，次第轉紅，絳極離枝，不復流連，委地成泥，再護芳華。',

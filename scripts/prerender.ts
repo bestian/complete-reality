@@ -12,6 +12,7 @@ import { renderToString } from '@vue/server-renderer'
 import { readFileSync, writeFileSync, mkdirSync, existsSync, cpSync } from 'fs'
 import { resolve, dirname } from 'path'
 import { marked } from 'marked'
+import { articles } from '../src/data/articles'
 import { getHead, renderHeadTags } from '../src/ssr/heads'
 import { createServer } from 'vite'
 import vue from '@vitejs/plugin-vue'
@@ -44,6 +45,8 @@ function buildPage(headTags: string, bodyHtml: string): string {
   </head>
   <body>
     ${bodyHtml}
+    <script type="module" src="/js/article-gestures.js"></script>
+    <script type="module" src="/js/favorites-page.js"></script>
   </body>
 </html>`
 }
@@ -61,29 +64,6 @@ function writeHtml(outputPath: string, html: string) {
   console.log(`✓ 已生成：${outputPath.replace(ROOT, '')}`)
 }
 
-interface ArticleInfo {
-  slug: string
-  title: string
-  date: string
-  summary: string
-}
-
-// 與 src/views/index.vue 保持同步的文章清單
-const ARTICLES: ArticleInfo[] = [
-  {
-    slug: '芙蓉說',
-    title: '芙蓉說',
-    date: '2012.10.01',
-    summary: '芙蓉風華，一日三幻化——晨迎朝露，絳極離枝，功成身退，乃合天道。',
-  },
-  {
-    slug: '走路',
-    title: '走路',
-    date: '2012.05.06',
-    summary: '在山上，要走路。走山路，是不說話的。',
-  },
-]
-
 async function prerenderIndex(IndexView: object) {
   const vueApp = createSSRApp(IndexView)
   const bodyHtml = await renderToString(vueApp)
@@ -92,7 +72,15 @@ async function prerenderIndex(IndexView: object) {
   writeHtml(resolve(WWW, 'index.html'), html)
 }
 
-async function prerenderArticle(ArticleView: object, article: ArticleInfo) {
+async function prerenderFavorites(FavoritesView: object) {
+  const vueApp = createSSRApp(FavoritesView)
+  const bodyHtml = await renderToString(vueApp)
+  const headTags = renderHeadTags(getHead('/favorites'))
+  const html = buildPage(headTags, bodyHtml)
+  writeHtml(resolve(WWW, 'favorites', 'index.html'), html)
+}
+
+async function prerenderArticle(ArticleView: object, article: (typeof articles)[number]) {
   const mdPath = resolve(ARTICLES_DIR, `${article.slug}.md`)
   if (!existsSync(mdPath)) {
     console.warn(`⚠ 找不到 markdown 檔：${mdPath}`)
@@ -101,13 +89,17 @@ async function prerenderArticle(ArticleView: object, article: ArticleInfo) {
 
   const markdown = readFileSync(mdPath, 'utf-8')
   const contentHtml = await marked.parse(markdown) as string
+  const path = `/article/${article.slug}`
 
   const vueApp = createSSRApp(ArticleView as Parameters<typeof createSSRApp>[0], {
     contentHtml,
     slug: article.slug,
+    title: article.title,
+    description: article.summary,
+    path,
   })
   const bodyHtml = await renderToString(vueApp)
-  const headTags = renderHeadTags(getHead(`/article/${article.slug}`))
+  const headTags = renderHeadTags(getHead(path))
   const html = buildPage(headTags, bodyHtml)
 
   // 輸出到 www/article/<slug>/index.html，讓 ASSETS 以目錄形式提供
@@ -132,10 +124,12 @@ async function main() {
   try {
     const { default: IndexView } = await vite.ssrLoadModule('/src/views/index.vue')
     const { default: ArticleView } = await vite.ssrLoadModule('/src/views/article.vue')
+    const { default: FavoritesView } = await vite.ssrLoadModule('/src/views/favorites.vue')
 
     await prerenderIndex(IndexView)
+    await prerenderFavorites(FavoritesView)
 
-    for (const article of ARTICLES) {
+    for (const article of articles) {
       await prerenderArticle(ArticleView, article)
     }
   } finally {

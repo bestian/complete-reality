@@ -288,6 +288,58 @@ h1.ui.header.site-title {
   margin-top: 0.2rem;
 }
 
+.quick-links {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: flex-end;
+  align-items: center;
+  margin-bottom: 0.9rem;
+}
+
+.quick-favorite-button {
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid rgba(126, 87, 194, 0.35);
+  border-radius: 999px;
+  background: rgba(179, 157, 219, 0.12);
+  color: var(--heading);
+  font-size: 0.88rem;
+  letter-spacing: 0.04em;
+  padding: 0.35rem 0.72rem;
+  cursor: pointer;
+  transition: background-color 0.2s, border-color 0.2s, color 0.2s;
+}
+
+.quick-favorite-button:hover {
+  background: rgba(179, 157, 219, 0.2);
+  border-color: rgba(126, 87, 194, 0.46);
+}
+
+.quick-favorite-button.is-saved {
+  border-color: rgba(126, 87, 194, 0.56);
+  background: rgba(126, 87, 194, 0.16);
+}
+
+.quick-link-favorites {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  color: var(--secondary-dark);
+  font-size: 0.88rem;
+  letter-spacing: 0.04em;
+  padding: 0.35rem 0.72rem;
+  border-radius: 999px;
+  border: 1px solid rgba(100, 181, 246, 0.35);
+  background: rgba(168, 216, 234, 0.14);
+  transition: background-color 0.2s, border-color 0.2s;
+}
+
+.quick-link-favorites:hover {
+  background: rgba(179, 157, 219, 0.15);
+  border-color: rgba(126, 87, 194, 0.4);
+}
+
 /* ============================================================
    頁尾分隔線
    ============================================================ */
@@ -394,6 +446,210 @@ h1.ui.header.site-title {
   border-radius: 0 4px 4px 0;
 }
 
+.article-page {
+  position: relative;
+  overflow-x: clip;
+  --swipe-offset: 0px;
+}
+
+.article-swipe-actions {
+  position: absolute;
+  inset: 5.5rem 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 0.2rem;
+  pointer-events: none;
+}
+
+.swipe-action {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.45rem 0.8rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--heading);
+  box-shadow: 0 8px 24px rgba(100, 181, 246, 0.14);
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+  opacity: 0;
+  transition: opacity 0.18s ease, transform 0.18s ease;
+}
+
+.swipe-action-back {
+  transform: translateX(-16px);
+}
+
+.swipe-action-favorite {
+  transform: translateX(16px);
+}
+
+.article-page[data-swipe-direction="left"] .swipe-action-back,
+.article-page[data-swipe-direction="right"] .swipe-action-favorite {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.article-gesture-frame {
+  position: relative;
+  z-index: 1;
+  background: var(--bg);
+  transform: translate3d(var(--swipe-offset), 0, 0);
+  transition: transform 0.18s ease-out;
+  touch-action: pan-y;
+}
+
+.article-page.is-swiping .article-gesture-frame {
+  transition: none;
+}
+
+.article-swipe-hint {
+  display: none;
+  margin: 1rem 0 0;
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.8rem;
+  letter-spacing: 0.03em;
+}
+
+.article-swipe-toast {
+  position: fixed;
+  left: 50%;
+  bottom: 1.2rem;
+  z-index: 50;
+  margin: 0;
+  padding: 0.55rem 0.95rem;
+  border-radius: 999px;
+  background: rgba(44, 26, 14, 0.88);
+  color: #fff;
+  font-size: 0.82rem;
+  letter-spacing: 0.03em;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, 10px);
+  transition: opacity 0.18s ease, transform 0.18s ease;
+}
+
+.article-swipe-toast.is-visible {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+/* ============================================================
+   我的最愛頁
+   ============================================================ */
+.favorites-header {
+  margin-bottom: 1.2rem;
+}
+
+.ui.header.favorites-title {
+  font-family: var(--font-serif) !important;
+  color: var(--heading) !important;
+  margin-bottom: 0.45rem !important;
+}
+
+.favorites-subtitle {
+  color: var(--muted);
+  margin: 0;
+}
+
+.favorites-loading {
+  color: var(--muted);
+}
+
+.favorites-list {
+  display: grid;
+  gap: 0.95rem;
+}
+
+.favorite-card {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: #fff;
+  padding: 1rem 1.1rem;
+}
+
+.favorite-title {
+  display: inline-block;
+  font-size: 1.08rem;
+  font-weight: 600;
+  color: var(--secondary-dark);
+  text-decoration: none;
+  margin-bottom: 0.4rem;
+}
+
+.favorite-title:hover {
+  text-decoration: underline;
+}
+
+.favorite-description {
+  margin: 0 0 0.6rem;
+  color: #6b4f35;
+  line-height: 1.7;
+}
+
+.favorite-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 0.9rem;
+  color: var(--muted);
+  font-size: 0.82rem;
+  margin-bottom: 0.6rem;
+}
+
+.favorite-path {
+  word-break: break-all;
+}
+
+.favorite-remove,
+.favorites-clear {
+  appearance: none;
+  border: 1px solid rgba(126, 87, 194, 0.35);
+  border-radius: 999px;
+  background: rgba(179, 157, 219, 0.12);
+  color: var(--heading);
+  font-size: 0.82rem;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  padding: 0.28rem 0.7rem;
+}
+
+.favorite-remove:hover,
+.favorites-clear:hover {
+  background: rgba(179, 157, 219, 0.2);
+}
+
+.favorites-clear {
+  margin-top: 1rem;
+}
+
+.favorites-empty {
+  border: 1px dashed var(--border);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.65);
+  padding: 1.2rem 1rem;
+}
+
+.favorites-empty-title {
+  margin: 0 0 0.5rem;
+  color: var(--heading);
+  font-size: 1.1rem;
+}
+
+.favorites-empty-tip {
+  margin: 0 0 0.75rem;
+  color: var(--muted);
+}
+
+.favorites-empty-link {
+  color: var(--primary-dark);
+  text-decoration: none;
+}
+
+.favorites-empty-link:hover {
+  text-decoration: underline;
+}
+
 /* ============================================================
    文章頁尾
    ============================================================ */
@@ -461,6 +717,22 @@ a {
 
   .article-body h1 { font-size: 1.4rem; }
   .article-body h2 { font-size: 1.2rem; }
+
+  .quick-links {
+    margin-bottom: 0.7rem;
+  }
+
+  .quick-link-favorites {
+    font-size: 0.8rem;
+  }
+
+  .quick-favorite-button {
+    font-size: 0.8rem;
+  }
+
+  .article-swipe-hint {
+    display: block;
+  }
 }
 
 /* ============================================================
@@ -483,6 +755,13 @@ a {
 @media screen and (min-width: 1025px) {
   .page {
     padding: 2.5rem 2rem;
+  }
+}
+
+@media screen and (min-width: 601px) {
+  .article-swipe-actions,
+  .article-swipe-hint {
+    display: none;
   }
 }
 
