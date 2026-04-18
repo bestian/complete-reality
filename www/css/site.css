@@ -28,6 +28,7 @@
 
   --font-serif: 'Georgia', 'Noto Serif TC', serif;
   --max-width:  760px;
+  --site-header-wave-tile-width: 360px;
 }
 
 /* ============================================================
@@ -86,33 +87,22 @@ body {
   }
 }
 
-@keyframes site-header-wave-edge {
-  0% {
+@keyframes site-header-wave-flow {
+  from {
     background-position:
-      0 100%,
-      28px 100%,
+      0 calc(100% - 2px),
       0 0;
-    transform: translate3d(0, 0, 0);
   }
-  50% {
+  to {
     background-position:
-      44px 100%,
-      -8px 100%,
+      var(--site-header-wave-tile-width) calc(100% - 2px),
       0 0;
-    transform: translate3d(0, -2px, 0);
-  }
-  100% {
-    background-position:
-      88px 100%,
-      -44px 100%,
-      0 0;
-    transform: translate3d(0, 0, 0);
   }
 }
 
 .site-header {
   position: relative;
-  overflow: hidden;
+  overflow: visible;
   text-align: center;
   padding: 2.2rem 1rem 1.8rem;
   margin-bottom: 2rem;
@@ -170,23 +160,25 @@ body {
 
 .site-header-wave {
   position: absolute;
-  left: -6%;
-  right: -6%;
-  bottom: -6px;
-  height: 3rem;
+  left: 0;
+  right: 0;
+  bottom: -35px;
+  height: 65px;
   z-index: 0;
   pointer-events: none;
-  opacity: 0.92;
-  background:
-    radial-gradient(36px 18px at 18px 28px, rgba(255, 255, 255, 0.82) 0 62%, transparent 64%) repeat-x,
-    radial-gradient(42px 20px at 42px 26px, rgba(179, 157, 219, 0.24) 0 58%, transparent 60%) repeat-x,
-    linear-gradient(to top, rgba(255, 255, 255, 0.32), rgba(255, 255, 255, 0) 72%);
+  opacity: 0.96;
+  background-image:
+    url("/images/waterflow.svg"),
+    linear-gradient(to top, rgba(255, 255, 255, 0.42), rgba(255, 255, 255, 0) 72%);
+  background-repeat: repeat-x, no-repeat;
   background-size:
-    88px 34px,
-    96px 38px,
+    var(--site-header-wave-tile-width) 64px,
     100% 100%;
-  animation: site-header-wave-edge 11s ease-in-out infinite;
-  will-change: background-position, transform;
+  background-position:
+    0 calc(100% - 2px),
+    0 0;
+  animation: site-header-wave-flow 22s linear infinite;
+  will-change: background-position;
 }
 
 @media (prefers-reduced-motion: reduce) {
