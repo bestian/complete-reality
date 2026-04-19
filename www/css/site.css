@@ -178,7 +178,7 @@ body {
   background-position:
     0 calc(100% - 2px),
     0 0;
-  animation: site-header-wave-flow 26s linear infinite;
+  animation: site-header-wave-flow 10s linear infinite;
   will-change: background-position;
 }
 
