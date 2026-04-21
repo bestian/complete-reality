@@ -24,7 +24,10 @@ import vue from '@vitejs/plugin-vue'
 const ROOT = resolve(process.cwd())
 const WWW = resolve(ROOT, 'www')
 const PUBLIC = resolve(ROOT, 'public')
-const ARTICLES_DIR = resolve(WWW, 'articles_for_prototype')
+const ARTICLE_SOURCE_DIRS = [
+  resolve(WWW, 'articles_real'),
+  resolve(WWW, 'articles_for_prototype'),
+]
 
 /** 將 public/ 內容合併至 www/（路徑一對一對應）；若 public 不存在則略過。 */
 function copyPublicAssetsToWww() {
@@ -80,10 +83,20 @@ async function prerenderFavorites(FavoritesView: object) {
   writeHtml(resolve(WWW, 'favorites', 'index.html'), html)
 }
 
+function resolveArticleMarkdownPath(slug: string): string | undefined {
+  for (const sourceDir of ARTICLE_SOURCE_DIRS) {
+    const mdPath = resolve(sourceDir, `${slug}.md`)
+    if (existsSync(mdPath)) {
+      return mdPath
+    }
+  }
+  return undefined
+}
+
 async function prerenderArticle(ArticleView: object, article: (typeof articles)[number]) {
-  const mdPath = resolve(ARTICLES_DIR, `${article.slug}.md`)
-  if (!existsSync(mdPath)) {
-    console.warn(`⚠ 找不到 markdown 檔：${mdPath}`)
+  const mdPath = resolveArticleMarkdownPath(article.slug)
+  if (!mdPath) {
+    console.warn(`⚠ 找不到 markdown 檔（已嘗試 articles_real 與 articles_for_prototype）：${article.slug}.md`)
     return
   }
 

@@ -15,7 +15,7 @@ type Bindings = {
 }
 
 /** 建置時打包；避免 preview／本機執行時缺少 ASSETS 綁定而拋錯。 */
-const bundledArticles = import.meta.glob<string>('../www/articles_for_prototype/*.md', {
+const bundledArticles = import.meta.glob<string>('../www/articles_{real,for_prototype}/*.md', {
   query: '?raw',
   import: 'default',
 })
@@ -48,20 +48,36 @@ app.get('/article/:slug', async (c) => {
   const path = `/article/${slug}`
   const head = getHead(path)
   const article = getArticleBySlug(slug)
-  const markdownPath = `/articles_for_prototype/${slug}.md`
-  const bundledKey = `../www/articles_for_prototype/${slug}.md`
+  const markdownPathCandidates = [
+    `/articles_real/${slug}.md`,
+    `/articles_for_prototype/${slug}.md`,
+  ]
+  const bundledKeyCandidates = [
+    `../www/articles_real/${slug}.md`,
+    `../www/articles_for_prototype/${slug}.md`,
+  ]
 
   let markdown: string | undefined
 
   if (c.env.ASSETS) {
-    const requestUrl = new URL(markdownPath, c.req.url)
-    const response = await c.env.ASSETS.fetch(requestUrl)
-    if (response.ok) markdown = await response.text()
+    for (const markdownPath of markdownPathCandidates) {
+      const requestUrl = new URL(markdownPath, c.req.url)
+      const response = await c.env.ASSETS.fetch(requestUrl)
+      if (response.ok) {
+        markdown = await response.text()
+        break
+      }
+    }
   }
 
   if (markdown === undefined) {
-    const load = bundledArticles[bundledKey]
-    if (load) markdown = await load()
+    for (const bundledKey of bundledKeyCandidates) {
+      const load = bundledArticles[bundledKey]
+      if (load) {
+        markdown = await load()
+        break
+      }
+    }
   }
 
   if (markdown === undefined) {

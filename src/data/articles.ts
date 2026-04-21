@@ -7,6 +7,12 @@ export interface ArticleInfo {
 
 export const articles: ArticleInfo[] = [
   {
+    slug: '緣起',
+    title: '緣起',
+    date: '2026.04.21',
+    summary: '記錄我從新聞工作者走入全真修行的因緣、師承與三十餘年未輟的體悟，並以數位方式傳承全真的初心。',
+  },
+  {
     slug: '芙蓉說',
     title: '芙蓉說',
     date: '2012.10.01',
