@@ -12,7 +12,7 @@ import { renderToString } from '@vue/server-renderer'
 import { readFileSync, writeFileSync, mkdirSync, existsSync, cpSync } from 'fs'
 import { resolve, dirname } from 'path'
 import { marked } from 'marked'
-import { articles } from '../src/data/articles'
+import { articles, categories, getArticlesByCategory } from '../src/data/articles'
 import { getHead, renderHeadTags } from '../src/ssr/heads'
 import { createServer } from 'vite'
 import vue from '@vitejs/plugin-vue'
@@ -83,6 +83,18 @@ async function prerenderFavorites(FavoritesView: object) {
   writeHtml(resolve(WWW, 'favorites', 'index.html'), html)
 }
 
+async function prerenderCategory(CategoryView: object, category: string) {
+  const categoryArticles = getArticlesByCategory(category)
+  const vueApp = createSSRApp(CategoryView as Parameters<typeof createSSRApp>[0], {
+    category,
+    articles: categoryArticles,
+  })
+  const bodyHtml = await renderToString(vueApp)
+  const headTags = renderHeadTags(getHead(`/category/${category}`))
+  const html = buildPage(headTags, bodyHtml)
+  writeHtml(resolve(WWW, 'category', category, 'index.html'), html)
+}
+
 function resolveArticleMarkdownPath(slug: string): string | undefined {
   for (const sourceDir of ARTICLE_SOURCE_DIRS) {
     const mdPath = resolve(sourceDir, `${slug}.md`)
@@ -109,6 +121,8 @@ async function prerenderArticle(ArticleView: object, article: (typeof articles)[
     slug: article.slug,
     title: article.title,
     description: article.summary,
+    author: article.author,
+    attention_needed: article.attention_needed ?? false,
     path,
   })
   const bodyHtml = await renderToString(vueApp)
@@ -136,11 +150,15 @@ async function main() {
 
   try {
     const { default: IndexView } = await vite.ssrLoadModule('/src/views/index.vue')
+    const { default: CategoryView } = await vite.ssrLoadModule('/src/views/category.vue')
     const { default: ArticleView } = await vite.ssrLoadModule('/src/views/article.vue')
     const { default: FavoritesView } = await vite.ssrLoadModule('/src/views/favorites.vue')
 
     await prerenderIndex(IndexView)
     await prerenderFavorites(FavoritesView)
+    for (const category of categories) {
+      await prerenderCategory(CategoryView, category)
+    }
 
     for (const article of articles) {
       await prerenderArticle(ArticleView, article)

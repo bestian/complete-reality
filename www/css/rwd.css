@@ -42,6 +42,23 @@ h1.ui.header.site-title {
   margin-bottom: 1.1rem;
 }
 
+/* 手機上分類列改為 flex，並移除 divider 左右裝飾線避免切版 */
+@media (max-width: 599px) {
+  .ui.horizontal.divider.section-divider.category-divider {
+    display: flex !important;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.2rem;
+  }
+
+  .ui.horizontal.divider.section-divider.category-divider::before,
+  .ui.horizontal.divider.section-divider.category-divider::after {
+    display: none !important;
+    content: none !important;
+  }
+}
+
 .ui.items.article-list > .item.article-card {
   padding: 0.85rem 1rem !important;
 }

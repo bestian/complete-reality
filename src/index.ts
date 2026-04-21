@@ -3,9 +3,10 @@ import { marked } from 'marked'
 import { createSSRApp } from 'vue'
 import { renderToString } from '@vue/server-renderer'
 import IndexView from './views/index.vue'
+import CategoryView from './views/category.vue'
 import ArticleView from './views/article.vue'
 import FavoritesView from './views/favorites.vue'
-import { getArticleBySlug } from './data/articles'
+import { getArticleBySlug, getArticlesByCategory } from './data/articles'
 import { getHead, renderHeadTags } from './ssr/heads'
 
 type Bindings = {
@@ -40,6 +41,15 @@ app.get('/', async (c) => {
   const vueApp = createSSRApp(IndexView)
   const bodyHtml = await renderToString(vueApp)
   const headTags = renderHeadTags(getHead('/'))
+  return c.html(buildPage(headTags, bodyHtml))
+})
+
+app.get('/category/:category', async (c) => {
+  const category = decodeURIComponent(c.req.param('category'))
+  const articles = getArticlesByCategory(category)
+  const vueApp = createSSRApp(CategoryView, { category, articles })
+  const bodyHtml = await renderToString(vueApp)
+  const headTags = renderHeadTags(getHead(`/category/${category}`))
   return c.html(buildPage(headTags, bodyHtml))
 })
 
@@ -91,6 +101,7 @@ app.get('/article/:slug', async (c) => {
     title: article?.title ?? slug,
     description: article?.summary ?? head.description ?? '',
     path,
+    author: article?.author ?? '',
   })
   const bodyHtml = await renderToString(vueApp)
   const headTags = renderHeadTags(head)

@@ -5,7 +5,12 @@ defineProps<{
   title: string
   description: string
   path: string
+  author: string
 }>()
+
+function injectAuthor(contentHtml: string, author: string): string {
+  return contentHtml.replace('</h2>', `<span class="author ">作者：${author}</span></h2>`)
+}
 </script>
 
 <template>
@@ -42,7 +47,7 @@ defineProps<{
       </div>
 
       <!-- 文章正文 -->
-      <article class="article-body" v-html="contentHtml" />
+      <article class="article-body" v-html="injectAuthor(contentHtml, author)" />
 
       <!-- 底部分隔線 + 返回 -->
       <footer class="article-footer">

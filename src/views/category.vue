@@ -1,11 +1,14 @@
 <script setup lang="ts">
-import { articles, categories } from '../data/articles'
+import { categories, type ArticleInfo } from '../data/articles'
+
+defineProps<{
+  category: string
+  articles: ArticleInfo[]
+}>()
 </script>
 
 <template>
   <div class="page">
-
-    <!-- 頁首：淺粉藍／粉紫漸層、水紋、光點與下緣波浪動畫（樣式見 site.css） -->
     <header class="site-header">
       <div class="site-header-inner">
         <h1 class="ui header site-title">流水全真</h1>
@@ -15,26 +18,23 @@ import { articles, categories } from '../data/articles'
     </header>
 
     <main class="main">
-
       <section class="article-section">
-
-        <!-- 節標題改為分類連結 -->
         <div class="ui horizontal divider section-divider category-divider">
-          <span>分類：</span>
-          <template v-for="(category, idx) in categories" :key="category">
-            <a :href="`/category/${encodeURIComponent(category)}`" class="category-link">{{ category }}</a>
+          分類：
+          <template v-for="(item, idx) in categories" :key="item">
+            <a :href="`/category/${encodeURIComponent(item)}`" class="category-link">{{ item }}</a>
             <span v-if="idx < categories.length - 1" class="category-sep">／</span>
           </template>
         </div>
 
-        <!-- 文章列表用 Semantic UI items -->
-        <div class="ui relaxed items article-list">
+        <div class="ui horizontal divider section-divider">目前分類：{{ category }}</div>
 
-          <!-- 快速連結 -->
+        <div class="ui relaxed items article-list">
           <div class="quick-links">
+            <a href="/" class="quick-link-favorites">回首頁</a>
             <a href="/favorites" class="quick-link-favorites">我的最愛</a>
           </div>
-          
+
           <div
             v-for="article in articles"
             :key="article.slug"
@@ -52,20 +52,13 @@ import { articles, categories } from '../data/articles'
                 </span>
               </a>
               <div class="meta article-meta">
-                <!-- 日期用 Semantic UI label（淺紫） -->
                 <span class="ui label article-date">{{ article.date }}</span>
               </div>
               <div class="description article-summary">{{ article.summary }}</div>
             </div>
           </div>
-        </div>
-      </section>
 
-      <!-- 我的最愛 -->
-      <section class="favorites-section">
-        <!-- 快速連結 -->
-        <div class="quick-links">
-          <a href="/favorites" class="quick-link-favorites">我的最愛</a>
+          <p v-if="articles.length === 0" class="description article-summary">此分類目前沒有文章。</p>
         </div>
       </section>
     </main>
@@ -74,6 +67,5 @@ import { articles, categories } from '../data/articles'
       <div class="ui divider footer-divider"></div>
       <p>原作者網站：<a href="https://life3.pages.dev/#/" target="_blank" rel="noopener noreferrer">life3.pages.dev</a></p>
     </footer>
-
   </div>
 </template>

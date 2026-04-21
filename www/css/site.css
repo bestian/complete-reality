@@ -188,6 +188,10 @@ body {
   .site-header-wave {
     animation: none !important;
   }
+
+  .attention-arrow {
+    animation: none !important;
+  }
 }
 
 /* 覆蓋 Semantic UI .ui.header 的字型與顏色 */
@@ -226,6 +230,28 @@ h1.ui.header.site-title {
   background-color: var(--primary) !important;
 }
 
+.ui.horizontal.divider.section-divider.category-divider {
+  position: relative;
+  letter-spacing: 0.04em;
+  line-height: 1.9;
+  background-color: var(--primary);
+}
+
+.category-link {
+  color: var(--secondary-dark);
+  text-decoration: none;
+  margin-left: 0.2rem;
+}
+
+.category-link:hover {
+  text-decoration: underline;
+}
+
+.category-sep {
+  color: var(--muted);
+  margin: 0 0.2rem;
+}
+
 /* ============================================================
    文章列表：Semantic UI items
    ============================================================ */
@@ -255,11 +281,42 @@ h1.ui.header.site-title {
   font-size: 1.22rem !important;
   font-weight: 600;
   color: var(--secondary-dark) !important;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.38rem;
   text-decoration: none;
 }
 
 .ui.items.article-list .header.article-title:hover {
   text-decoration: underline;
+}
+
+.attention-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.1em;
+  padding: 0.08em 0.32em;
+  border-radius: 999px;
+  background: #ffdf4d;
+  color: #111;
+  font-size: 0.68em;
+  font-weight: 700;
+  line-height: 1;
+  animation: attention-arrow-wiggle 1s ease-in-out 3;
+}
+
+@keyframes attention-arrow-wiggle {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  30% {
+    transform: translateX(-3px);
+  }
+  70% {
+    transform: translateX(3px);
+  }
 }
 
 /* meta 區域：讓 label 正確對齊 */
@@ -450,6 +507,19 @@ h1.ui.header.site-title {
   position: relative;
   overflow-x: clip;
   --swipe-offset: 0px;
+}
+
+.article-body h2 {
+  position: relative;
+}
+
+.author {
+  position: absolute;
+  bottom: 0.6em;
+  right: 0;
+  color: var(--muted);
+  font-size: 0.88rem;
+  line-height: 1;
 }
 
 .article-swipe-actions {
