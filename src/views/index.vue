@@ -88,7 +88,10 @@ const sortedArticles = [...articles].sort((a, b) => {
 
     <footer class="site-footer">
       <div class="ui divider footer-divider"></div>
-      <p>原作者網站：<a href="https://life3.pages.dev/#/" target="_blank" rel="noopener noreferrer">life3.pages.dev</a></p>
+      <p>作者：李雅卿（道號：流水）
+        <br/>
+        個人網站：<a href="https://life3.pages.dev/#/" target="_blank" rel="noopener noreferrer">life3.pages.dev</a>
+      </p>
     </footer>
 
   </div>
