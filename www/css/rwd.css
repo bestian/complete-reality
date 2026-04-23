@@ -76,7 +76,7 @@ h1.ui.header.site-title {
   margin-top: 1.5rem;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 599px) {
   .article-swipe-hint {
     display: block;
   }
@@ -161,7 +161,7 @@ h1.ui.header.site-title {
     margin-top: 2rem;
   }
 }
-@media screen and (min-width: 601px) {
+@media screen and (min-width: 600px) {
   .article-swipe-actions,
   .article-swipe-hint {
     display: none;

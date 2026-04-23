@@ -1,8 +1,15 @@
+$rwd-tablet-min: 600px;
+$rwd-desktop-min: 1024px;
+$rwd-phone-max: $rwd-tablet-min - 1px;
+$rwd-tablet-max: $rwd-desktop-min - 1px;
+$rwd-swipe-hint-max: $rwd-phone-max;
+$rwd-swipe-hide-min: $rwd-tablet-min;
+
 :root {
-  --rwd-phone-max: 599px;
-  --rwd-tablet-min: 600px;
-  --rwd-tablet-max: 1023px;
-  --rwd-desktop-min: 1024px;
+  --rwd-phone-max: #{$rwd-phone-max};
+  --rwd-tablet-min: #{$rwd-tablet-min};
+  --rwd-tablet-max: #{$rwd-tablet-max};
+  --rwd-desktop-min: #{$rwd-desktop-min};
 }
 
 /* 手機（預設，< 600px） */
@@ -30,7 +37,7 @@ h1.ui.header.site-title {
   margin-bottom: 1.1rem;
 }
 
-@media (max-width: 599px) {
+@media (max-width: #{$rwd-phone-max}) {
   .ui.horizontal.divider.section-divider.category-divider {
     display: flex !important;
     flex-wrap: wrap;
@@ -77,7 +84,7 @@ h1.ui.header.site-title {
   margin-top: 1.5rem;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: #{$rwd-swipe-hint-max}) {
   .article-swipe-hint {
     display: block;
   }
@@ -93,7 +100,7 @@ h1.ui.header.site-title {
 }
 
 /* 平板（600px–1023px） */
-@media (min-width: 600px) and (max-width: 1023px) {
+@media (min-width: #{$rwd-tablet-min}) and (max-width: #{$rwd-tablet-max}) {
   :root {
     --max-width: 720px;
   }
@@ -131,7 +138,7 @@ h1.ui.header.site-title {
 }
 
 /* 電腦（>= 1024px） */
-@media (min-width: 1024px) {
+@media (min-width: #{$rwd-desktop-min}) {
   :root {
     --max-width: 800px;
   }
@@ -183,7 +190,7 @@ h1.ui.header.site-title {
   }
 }
 
-@media screen and (min-width: 601px) {
+@media screen and (min-width: #{$rwd-swipe-hide-min}) {
   .article-swipe-actions,
   .article-swipe-hint {
     display: none;
