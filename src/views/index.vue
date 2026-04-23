@@ -8,8 +8,8 @@ import { articles, categories } from '../data/articles'
     <!-- 頁首：淺粉藍／粉紫漸層、水紋、光點與下緣波浪動畫（樣式見 site.css） -->
     <header class="site-header">
       <div class="site-header-inner">
-        <h1 class="ui header site-title">流水全真</h1>
-        <p class="tagline">以佛煉心・以儒應世・以道護體</p>
+        <img src="/images/main-img.jpeg" alt="流水全真" class="logo" width="300" height="300" style="border-radius: 50%;" />
+        <!-- <p class="tagline">以佛煉心・以儒應世・以道護體</p> -->
       </div>
       <div class="site-header-wave" aria-hidden="true"></div>
     </header>

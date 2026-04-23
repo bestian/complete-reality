@@ -9,6 +9,13 @@ export interface ArticleInfo {
 }
 
 export const categories: string[] = [
+  "以佛煉心",
+  "以儒應世",
+  "以道護體",
+  "隨筆雜感"
+]
+
+export const tags: string[] = [
   "修行體悟",
   "日常功課",
   "丹道心法",
@@ -22,7 +29,6 @@ export const articles: ArticleInfo[] = [
     slug: '緣起',
     title: '緣起',
     author: '李雅卿',
-    category: "修行體悟",
     date: '2026.04.21',
     summary: '記錄我從新聞工作者走入全真修行的因緣、師承與三十餘年未輟的體悟，並以數位方式傳承全真的初心。',
     attention_needed: true,
