@@ -8,7 +8,9 @@ import { articles, categories } from '../data/articles'
     <!-- 頁首：淺粉藍／粉紫漸層、水紋、光點與下緣波浪動畫（樣式見 site.css） -->
     <header class="site-header">
       <div class="site-header-inner">
-        <img src="/images/main-img.jpeg" alt="流水全真" class="logo" width="300" height="300" style="border-radius: 50%;" />
+        <div class="img-wrapper" style="width: 300px; height: 253px; overflow: hidden; margin: 0 auto;">
+          <img src="/images/main-img.jpeg" alt="流水全真" class="logo" width="300" height="300" style="border-radius: 50%;" />
+        </div>
         <!-- <p class="tagline">以佛煉心・以儒應世・以道護體</p> -->
       </div>
       <div class="site-header-wave" aria-hidden="true"></div>
