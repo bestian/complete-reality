@@ -44,15 +44,14 @@ export function getHead(path: string): HeadConfig {
 /**
  * 將 HeadConfig 轉換為 HTML 字串，用於注入 <head> 區塊
  */
-export function renderHeadTags(config: HeadConfig): string {
+export function renderHeadTags(config: HeadConfig, path: string): string {
+  const stylesheets = getStylesheetsForPath(path)
   const parts: string[] = [
     `<meta charset="UTF-8" />`,
     `<meta name="viewport" content="width=device-width, initial-scale=1" />`,
     `<title>${escapeHtml(config.title)}</title>`,
     `<meta property="og:title" content="${escapeHtml(config.ogTitle ?? config.title)}" />`,
-    `<link rel="stylesheet" href="/css/semantic.min.css" />`,
-    `<link rel="stylesheet" href="/css/site.css" />`,
-    `<link rel="stylesheet" href="/css/rwd.css" />`,
+    ...stylesheets.map((href) => `<link rel="stylesheet" href="${href}" />`),
   ]
 
   if (config.description) {
@@ -69,6 +68,31 @@ export function renderHeadTags(config: HeadConfig): string {
   }
 
   return parts.join('\n    ')
+}
+
+function getStylesheetsForPath(path: string): string[] {
+  const common = [
+    '/css/semantic.min.css',
+    '/css/site.css',
+  ]
+
+  if (path === '/') {
+    return [...common, '/css/pages/home.css', '/css/rwd.css']
+  }
+
+  if (path.startsWith('/category/')) {
+    return [...common, '/css/pages/category.css', '/css/rwd.css']
+  }
+
+  if (path.startsWith('/article/')) {
+    return [...common, '/css/pages/article.css', '/css/rwd.css']
+  }
+
+  if (path === '/favorites') {
+    return [...common, '/css/pages/favorites.css', '/css/rwd.css']
+  }
+
+  return [...common, '/css/rwd.css']
 }
 
 function escapeHtml(str: string): string {

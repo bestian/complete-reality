@@ -70,7 +70,7 @@ function writeHtml(outputPath: string, html: string) {
 async function prerenderIndex(IndexView: object) {
   const vueApp = createSSRApp(IndexView)
   const bodyHtml = await renderToString(vueApp)
-  const headTags = renderHeadTags(getHead('/'))
+  const headTags = renderHeadTags(getHead('/'), '/')
   const html = buildPage(headTags, bodyHtml)
   writeHtml(resolve(WWW, 'index.html'), html)
 }
@@ -78,7 +78,7 @@ async function prerenderIndex(IndexView: object) {
 async function prerenderFavorites(FavoritesView: object) {
   const vueApp = createSSRApp(FavoritesView)
   const bodyHtml = await renderToString(vueApp)
-  const headTags = renderHeadTags(getHead('/favorites'))
+  const headTags = renderHeadTags(getHead('/favorites'), '/favorites')
   const html = buildPage(headTags, bodyHtml)
   writeHtml(resolve(WWW, 'favorites', 'index.html'), html)
 }
@@ -90,7 +90,8 @@ async function prerenderCategory(CategoryView: object, category: string) {
     articles: categoryArticles,
   })
   const bodyHtml = await renderToString(vueApp)
-  const headTags = renderHeadTags(getHead(`/category/${category}`))
+  const categoryPath = `/category/${category}`
+  const headTags = renderHeadTags(getHead(categoryPath), categoryPath)
   const html = buildPage(headTags, bodyHtml)
   writeHtml(resolve(WWW, 'category', category, 'index.html'), html)
 }
@@ -126,7 +127,7 @@ async function prerenderArticle(ArticleView: object, article: (typeof articles)[
     path,
   })
   const bodyHtml = await renderToString(vueApp)
-  const headTags = renderHeadTags(getHead(path))
+  const headTags = renderHeadTags(getHead(path), path)
   const html = buildPage(headTags, bodyHtml)
 
   // 輸出到 www/article/<slug>/index.html，讓 ASSETS 以目錄形式提供

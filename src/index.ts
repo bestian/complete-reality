@@ -40,7 +40,7 @@ function buildPage(headTags: string, bodyHtml: string): string {
 app.get('/', async (c) => {
   const vueApp = createSSRApp(IndexView)
   const bodyHtml = await renderToString(vueApp)
-  const headTags = renderHeadTags(getHead('/'))
+  const headTags = renderHeadTags(getHead('/'), '/')
   return c.html(buildPage(headTags, bodyHtml))
 })
 
@@ -49,7 +49,8 @@ app.get('/category/:category', async (c) => {
   const articles = getArticlesByCategory(category)
   const vueApp = createSSRApp(CategoryView, { category, articles })
   const bodyHtml = await renderToString(vueApp)
-  const headTags = renderHeadTags(getHead(`/category/${category}`))
+  const categoryPath = `/category/${category}`
+  const headTags = renderHeadTags(getHead(categoryPath), categoryPath)
   return c.html(buildPage(headTags, bodyHtml))
 })
 
@@ -104,14 +105,14 @@ app.get('/article/:slug', async (c) => {
     author: article?.author ?? '',
   })
   const bodyHtml = await renderToString(vueApp)
-  const headTags = renderHeadTags(head)
+  const headTags = renderHeadTags(head, path)
   return c.html(buildPage(headTags, bodyHtml))
 })
 
 app.get('/favorites', async (c) => {
   const vueApp = createSSRApp(FavoritesView)
   const bodyHtml = await renderToString(vueApp)
-  const headTags = renderHeadTags(getHead('/favorites'))
+  const headTags = renderHeadTags(getHead('/favorites'), '/favorites')
   return c.html(buildPage(headTags, bodyHtml))
 })
 

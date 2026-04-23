@@ -1,0 +1,110 @@
+.ui.horizontal.divider.section-divider {
+  font-family: var(--font-serif) !important;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: var(--heading) !important;
+  margin-bottom: 1.4rem;
+}
+
+.ui.horizontal.divider.section-divider::before,
+.ui.horizontal.divider.section-divider::after {
+  background-color: var(--primary) !important;
+}
+
+.quick-links {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: flex-end;
+  align-items: center;
+  margin-bottom: 0.9rem;
+}
+
+.quick-link-favorites {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  color: var(--secondary-dark);
+  font-size: 0.88rem;
+  letter-spacing: 0.04em;
+  padding: 0.35rem 0.72rem;
+  border-radius: 999px;
+  border: 1px solid rgba(100, 181, 246, 0.35);
+  background: rgba(168, 216, 234, 0.14);
+  transition: background-color 0.2s, border-color 0.2s;
+}
+
+.quick-link-favorites:hover {
+  background: rgba(179, 157, 219, 0.15);
+  border-color: rgba(126, 87, 194, 0.4);
+}
+
+.quick-favorite-button {
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid rgba(126, 87, 194, 0.35);
+  border-radius: 999px;
+  background: rgba(179, 157, 219, 0.12);
+  color: var(--heading);
+  font-size: 0.88rem;
+  letter-spacing: 0.04em;
+  padding: 0.35rem 0.72rem;
+  cursor: pointer;
+  transition: background-color 0.2s, border-color 0.2s, color 0.2s;
+}
+
+.quick-favorite-button:hover {
+  background: rgba(179, 157, 219, 0.2);
+  border-color: rgba(126, 87, 194, 0.46);
+}
+
+.quick-favorite-button.is-saved {
+  border-color: rgba(126, 87, 194, 0.56);
+  background: rgba(126, 87, 194, 0.16);
+}
+
+.ui.breadcrumb.breadcrumb-nav {
+  font-family: var(--font-serif) !important;
+  font-size: 0.88rem;
+  margin-bottom: 2rem;
+  background: rgba(168, 216, 234, 0.08);
+  padding: 0.5rem 0.8rem;
+  border-radius: 4px;
+  display: inline-block;
+}
+
+.ui.breadcrumb.breadcrumb-nav .section.back-section {
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.ui.breadcrumb.breadcrumb-nav .section.back-section:hover {
+  color: var(--primary-dark);
+}
+
+.ui.breadcrumb.breadcrumb-nav .divider.breadcrumb-sep {
+  color: var(--primary-mid);
+  margin: 0 0.2rem;
+}
+
+.ui.breadcrumb.breadcrumb-nav .active.section.article-slug {
+  color: var(--heading);
+  font-weight: 600;
+}
+
+.footer-divider.ui.divider {
+  border-top-color: var(--secondary) !important;
+  border-bottom-color: transparent !important;
+}
+
+.site-footer {
+  margin-top: 2rem;
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.site-footer a {
+  color: var(--primary-dark);
+}

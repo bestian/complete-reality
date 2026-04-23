@@ -1,0 +1,24 @@
+:root {
+  /* 主色調：淺紫 */
+  --primary: #ede7f6;
+  --primary-mid: #b39ddb;
+  --primary-dark: #7e57c2;
+
+  /* 副色調：淡藍 */
+  --secondary: #a8d8ea;
+  --secondary-mid: #64b5f6;
+  --secondary-dark: #1976d2;
+
+  /* 暖色系底色 */
+  --bg: #fdfaf6;
+  --text: #2c1a0e;
+  --heading: #5a3a1a;
+  --accent: #c8864a;
+  --muted: #9b7b5a;
+  --border: #d4b896;
+  --card-bg: #ffffff;
+
+  --font-serif: 'Georgia', 'Noto Serif TC', serif;
+  --max-width: 760px;
+  --site-header-wave-tile-width: 240px;
+}

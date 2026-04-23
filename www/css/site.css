@@ -1,40 +1,35 @@
-/* ============================================================
-   site.css — 流水全真 自訂主題
-   相當於 site/globals/site.variables 的 CSS 自訂屬性版本
-   主色調：淺紫  副色調：淡藍
-   載入順序：semantic.min.css → site.css → rwd.css（覆蓋優先）
-   ============================================================ */
-
-/* ---------- CSS 自訂屬性 (site variables) ---------- */
+@charset "UTF-8";
 :root {
   /* 主色調：淺紫 */
-  --primary:       #ede7f6;
-  --primary-mid:   #b39ddb;
-  --primary-dark:  #7e57c2;
-
+  --primary: #ede7f6;
+  --primary-mid: #b39ddb;
+  --primary-dark: #7e57c2;
   /* 副色調：淡藍 */
-  --secondary:     #a8d8ea;
+  --secondary: #a8d8ea;
   --secondary-mid: #64b5f6;
-  --secondary-dark:#1976d2;
-
-  /* 暖色系底色（既有設計，保留） */
-  --bg:       #fdfaf6;
-  --text:     #2c1a0e;
-  --heading:  #5a3a1a;
-  --accent:   #c8864a;
-  --muted:    #9b7b5a;
-  --border:   #d4b896;
-  --card-bg:  #ffffff;
-
+  --secondary-dark: #1976d2;
+  /* 暖色系底色 */
+  --bg: #fdfaf6;
+  --text: #2c1a0e;
+  --heading: #5a3a1a;
+  --accent: #c8864a;
+  --muted: #9b7b5a;
+  --border: #d4b896;
+  --card-bg: #ffffff;
   --font-serif: 'Georgia', 'Noto Serif TC', serif;
-  --max-width:  760px;
+  --max-width: 760px;
   --site-header-wave-tile-width: 240px;
 }
 
-/* ============================================================
-   全域重設（覆蓋 Semantic UI 預設字型）
-   ============================================================ */
-*, *::before, *::after { box-sizing: border-box; }
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  overflow-x: hidden;
+}
 
 body {
   margin: 0;
@@ -47,13 +42,10 @@ body {
   overflow-x: hidden;
 }
 
-html {
-  overflow-x: hidden;
+a {
+  color: var(--primary-dark);
 }
 
-/* ============================================================
-   頁面容器
-   ============================================================ */
 .page {
   max-width: var(--max-width);
   display: flex !important;
@@ -62,13 +54,12 @@ html {
   padding: 2rem 1.5rem;
 }
 
-/* ============================================================
-   頁首
-   淺粉藍 + 粉紫漸層、::before 水紋、::after 白／紫星點
-   ============================================================ */
+.ui.container {
+  max-width: var(--max-width) !important;
+}
+
 @keyframes site-header-water {
-  0%,
-  100% {
+  0%, 100% {
     transform: translate3d(0, 0, 0) scale(1) rotate(0deg);
   }
   28% {
@@ -81,10 +72,8 @@ html {
     transform: translate3d(1%, 2%, 0) scale(1.02) rotate(0.2deg);
   }
 }
-
 @keyframes site-header-sparkle {
-  0%,
-  100% {
+  0%, 100% {
     opacity: 0.78;
     transform: translate3d(0, 0, 0);
   }
@@ -93,20 +82,14 @@ html {
     transform: translate3d(-1.8%, 1.4%, 0);
   }
 }
-
 @keyframes site-header-wave-flow {
   from {
-    background-position:
-      0 calc(100% - 2px),
-      0 0;
+    background-position: 0 calc(100% - 2px), 0 0;
   }
   to {
-    background-position:
-      var(--site-header-wave-tile-width) calc(100% - 2px),
-      0 0;
+    background-position: var(--site-header-wave-tile-width) calc(100% - 2px), 0 0;
   }
 }
-
 .site-header {
   position: relative;
   overflow-y: visible;
@@ -114,13 +97,7 @@ html {
   padding: 2.2rem 1rem 1.8rem;
   margin-bottom: 2rem;
   border-radius: 8px;
-  background: linear-gradient(
-    152deg,
-    #eaf3fb 0%,
-    #f5f0fa 38%,
-    #e8f4fc 72%,
-    #f2ecf8 100%
-  );
+  background: linear-gradient(152deg, #eaf3fb 0%, #f5f0fa 38%, #e8f4fc 72%, #f2ecf8 100%);
 }
 
 .site-header::before {
@@ -129,10 +106,7 @@ html {
   z-index: 0;
   inset: -45% -28%;
   pointer-events: none;
-  background:
-    radial-gradient(ellipse 58% 45% at 32% 92%, rgba(168, 216, 234, 0.48), transparent 60%),
-    radial-gradient(ellipse 52% 40% at 68% 88%, rgba(179, 157, 219, 0.34), transparent 58%),
-    radial-gradient(ellipse 48% 36% at 48% 96%, rgba(255, 255, 255, 0.3), transparent 52%);
+  background: radial-gradient(ellipse 58% 45% at 32% 92%, rgba(168, 216, 234, 0.48), transparent 60%), radial-gradient(ellipse 52% 40% at 68% 88%, rgba(179, 157, 219, 0.34), transparent 58%), radial-gradient(ellipse 48% 36% at 48% 96%, rgba(255, 255, 255, 0.3), transparent 52%);
   animation: site-header-water 20s ease-in-out infinite;
   will-change: transform;
 }
@@ -143,19 +117,9 @@ html {
   z-index: 0;
   inset: 0;
   pointer-events: none;
-  background-image:
-    radial-gradient(1.4px 1.4px at 16px 22px, rgba(255, 255, 255, 0.95), transparent),
-    radial-gradient(1.2px 1.2px at 44px 10px, rgba(237, 231, 246, 0.92), transparent),
-    radial-gradient(1px 1px at 9px 48px, rgba(179, 157, 219, 0.68), transparent),
-    radial-gradient(1.5px 1.5px at 58px 36px, rgba(255, 255, 255, 0.82), transparent),
-    radial-gradient(1px 1px at 72px 18px, rgba(168, 216, 234, 0.5), transparent);
+  background-image: radial-gradient(1.4px 1.4px at 16px 22px, rgba(255, 255, 255, 0.95), transparent), radial-gradient(1.2px 1.2px at 44px 10px, rgba(237, 231, 246, 0.92), transparent), radial-gradient(1px 1px at 9px 48px, rgba(179, 157, 219, 0.68), transparent), radial-gradient(1.5px 1.5px at 58px 36px, rgba(255, 255, 255, 0.82), transparent), radial-gradient(1px 1px at 72px 18px, rgba(168, 216, 234, 0.5), transparent);
   background-size: 76px 68px, 92px 84px, 64px 72px, 88px 76px, 104px 96px;
-  background-position:
-    0 0,
-    14px 28px,
-    33px 6px,
-    8px 40px,
-    52px 12px;
+  background-position: 0 0, 14px 28px, 33px 6px, 8px 40px, 52px 12px;
   animation: site-header-sparkle 14s ease-in-out infinite;
 }
 
@@ -173,33 +137,14 @@ html {
   z-index: 0;
   pointer-events: none;
   opacity: 0.96;
-  background-image:
-    url("/images/waterflow.svg"),
-    linear-gradient(to top, rgba(255, 255, 255, 0.42), rgba(255, 255, 255, 0) 72%);
+  background-image: url("/images/waterflow.svg"), linear-gradient(to top, rgba(255, 255, 255, 0.42), rgba(255, 255, 255, 0) 72%);
   background-repeat: repeat-x, no-repeat;
-  background-size:
-    var(--site-header-wave-tile-width) 64px,
-    100% 100%;
-  background-position:
-    0 calc(100% - 2px),
-    0 0;
+  background-size: var(--site-header-wave-tile-width) 64px, 100% 100%;
+  background-position: 0 calc(100% - 2px), 0 0;
   animation: site-header-wave-flow 10s linear infinite;
   will-change: background-position;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .site-header::before,
-  .site-header::after,
-  .site-header-wave {
-    animation: none !important;
-  }
-
-  .attention-arrow {
-    animation: none !important;
-  }
-}
-
-/* 覆蓋 Semantic UI .ui.header 的字型與顏色 */
 .site-header .ui.header.site-title,
 h1.ui.header.site-title {
   font-family: var(--font-serif) !important;
@@ -217,9 +162,6 @@ h1.ui.header.site-title {
   margin: 0;
 }
 
-/* ============================================================
-   節標題：Semantic UI horizontal divider
-   ============================================================ */
 .ui.horizontal.divider.section-divider {
   font-family: var(--font-serif) !important;
   font-size: 1rem;
@@ -229,125 +171,9 @@ h1.ui.header.site-title {
   margin-bottom: 1.4rem;
 }
 
-/* divider 兩側的線改為淡藍色 */
 .ui.horizontal.divider.section-divider::before,
 .ui.horizontal.divider.section-divider::after {
   background-color: var(--primary) !important;
-}
-
-.ui.horizontal.divider.section-divider.category-divider {
-  position: relative;
-  letter-spacing: 0.04em;
-  line-height: 1.9;
-  background-color: var(--primary);
-}
-
-.category-link {
-  color: var(--secondary-dark);
-  text-decoration: none;
-  margin-left: 0.2rem;
-}
-
-.category-link:hover {
-  text-decoration: underline;
-}
-
-.category-sep {
-  color: var(--muted);
-  margin: 0 0.2rem;
-}
-
-/* ============================================================
-   文章列表：Semantic UI items
-   ============================================================ */
-
-/* 覆蓋 Semantic UI items 底線顏色 */
-.ui.relaxed.items.article-list {
-  font-family: var(--font-serif) !important;
-}
-
-.ui.items.article-list > .item.article-card {
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  background: var(--card-bg);
-  padding: 1rem 1.2rem !important;
-  margin-bottom: 0.75rem !important;
-  transition: border-color 0.2s, box-shadow 0.2s;
-}
-
-.ui.items.article-list > .item.article-card:hover {
-  border-color: var(--primary-mid);
-  box-shadow: 0 2px 10px rgba(100, 181, 246, 0.16);
-}
-
-/* 標題連結：淡藍深色 */
-.ui.items.article-list .header.article-title {
-  font-family: var(--font-serif) !important;
-  font-size: 1.22rem !important;
-  font-weight: 600;
-  color: var(--secondary-dark) !important;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.38rem;
-  text-decoration: none;
-}
-
-.ui.items.article-list .header.article-title:hover {
-  text-decoration: underline;
-}
-
-.attention-arrow {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 1.1em;
-  padding: 0.08em 0.32em;
-  border-radius: 999px;
-  background: #ffdf4d;
-  color: #111;
-  font-size: 0.68em;
-  font-weight: 700;
-  line-height: 1;
-  animation: attention-arrow-wiggle 1s ease-in-out 3;
-}
-
-@keyframes attention-arrow-wiggle {
-  0%,
-  100% {
-    transform: translateX(0);
-  }
-  30% {
-    transform: translateX(-3px);
-  }
-  70% {
-    transform: translateX(3px);
-  }
-}
-
-/* meta 區域：讓 label 正確對齊 */
-.ui.items.article-list .meta.article-meta {
-  margin: 0.4rem 0 0.5rem !important;
-  font-family: var(--font-serif) !important;
-}
-
-/* 日期 label：淺紫色調 */
-.ui.label.article-date {
-  font-family: var(--font-serif) !important;
-  font-size: 0.76rem !important;
-  background: var(--secondary) !important;
-  color: var(--secondary-dark) !important;
-  border: 1px solid var(--secondary-mid) !important;
-  border-radius: 12px !important;
-  padding: 0.2em 0.65em !important;
-}
-
-/* 摘要：暖棕色，細一點 */
-.ui.items.article-list .description.article-summary {
-  font-family: var(--font-serif) !important;
-  font-size: 1rem;
-  color: #6b4f35;
-  line-height: 1.7;
-  margin-top: 0.2rem;
 }
 
 .quick-links {
@@ -356,6 +182,25 @@ h1.ui.header.site-title {
   justify-content: flex-end;
   align-items: center;
   margin-bottom: 0.9rem;
+}
+
+.quick-link-favorites {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  color: var(--secondary-dark);
+  font-size: 0.88rem;
+  letter-spacing: 0.04em;
+  padding: 0.35rem 0.72rem;
+  border-radius: 999px;
+  border: 1px solid rgba(100, 181, 246, 0.35);
+  background: rgba(168, 216, 234, 0.14);
+  transition: background-color 0.2s, border-color 0.2s;
+}
+
+.quick-link-favorites:hover {
+  background: rgba(179, 157, 219, 0.15);
+  border-color: rgba(126, 87, 194, 0.4);
 }
 
 .quick-favorite-button {
@@ -383,47 +228,6 @@ h1.ui.header.site-title {
   background: rgba(126, 87, 194, 0.16);
 }
 
-.quick-link-favorites {
-  display: inline-flex;
-  align-items: center;
-  text-decoration: none;
-  color: var(--secondary-dark);
-  font-size: 0.88rem;
-  letter-spacing: 0.04em;
-  padding: 0.35rem 0.72rem;
-  border-radius: 999px;
-  border: 1px solid rgba(100, 181, 246, 0.35);
-  background: rgba(168, 216, 234, 0.14);
-  transition: background-color 0.2s, border-color 0.2s;
-}
-
-.quick-link-favorites:hover {
-  background: rgba(179, 157, 219, 0.15);
-  border-color: rgba(126, 87, 194, 0.4);
-}
-
-/* ============================================================
-   頁尾分隔線
-   ============================================================ */
-.footer-divider.ui.divider {
-  border-top-color: var(--secondary) !important;
-  border-bottom-color: transparent !important;
-}
-
-.site-footer {
-  margin-top: 2rem;
-  text-align: center;
-  color: var(--muted);
-  font-size: 0.85rem;
-}
-
-.site-footer a {
-  color: var(--primary-dark);
-}
-
-/* ============================================================
-   文章頁：麵包屑導覽  Semantic UI breadcrumb
-   ============================================================ */
 .ui.breadcrumb.breadcrumb-nav {
   font-family: var(--font-serif) !important;
   font-size: 0.88rem;
@@ -453,432 +257,18 @@ h1.ui.header.site-title {
   font-weight: 600;
 }
 
-/* ============================================================
-   文章正文
-   ============================================================ */
-.article-body {
-  font-family: var(--font-serif);
-  line-height: 1.9;
+.footer-divider.ui.divider {
+  border-top-color: var(--secondary) !important;
+  border-bottom-color: transparent !important;
 }
 
-.article-body h1,
-.article-body h2,
-.article-body h3 {
-  font-family: var(--font-serif);
-  color: var(--heading);
-  line-height: 1.4;
+.site-footer {
   margin-top: 2rem;
-}
-
-.article-body h1 {
-  border-bottom: 2px solid var(--primary);
-  padding-bottom: 0.4rem;
-}
-
-.article-body h2 {
-  font-size: 1.5rem;
-  letter-spacing: 0.05em;
-  border-bottom: 1px solid var(--secondary);
-  padding-bottom: 0.35rem;
-}
-
-.article-body p {
-  margin-bottom: 1.2em;
-  text-align: justify;
-}
-
-.article-body a {
-  color: var(--primary-dark);
-}
-
-.article-body img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 4px;
-}
-
-/* 引言：淺紫左邊線 + 淺紫透明底色 */
-.article-body blockquote {
-  margin: 1.5em 0;
-  padding: 0.8em 1.2em;
-  border-left: 3px solid var(--secondary-mid);
-  background: rgba(237, 231, 246, 0.35);
-  color: var(--heading);
-  font-style: italic;
-  border-radius: 0 4px 4px 0;
-}
-
-.article-page {
-  position: relative;
-  overflow-x: clip;
-  --swipe-offset: 0px;
-}
-
-.article-body h2 {
-  position: relative;
-}
-
-.author {
-  position: absolute;
-  bottom: 0.6em;
-  right: 0;
-  color: var(--muted);
-  font-size: 0.88rem;
-  line-height: 1;
-}
-
-.article-swipe-actions {
-  position: absolute;
-  inset: 5.5rem 0 auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 0.2rem;
-  pointer-events: none;
-}
-
-.swipe-action {
-  display: inline-flex;
-  align-items: center;
-  padding: 0.45rem 0.8rem;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.9);
-  color: var(--heading);
-  box-shadow: 0 8px 24px rgba(100, 181, 246, 0.14);
-  font-size: 0.82rem;
-  letter-spacing: 0.04em;
-  opacity: 0;
-  transition: opacity 0.18s ease, transform 0.18s ease;
-}
-
-.swipe-action-back {
-  transform: translateX(-16px);
-}
-
-.swipe-action-favorite {
-  transform: translateX(16px);
-}
-
-.article-page[data-swipe-direction="left"] .swipe-action-back,
-.article-page[data-swipe-direction="right"] .swipe-action-favorite {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-.article-gesture-frame {
-  position: relative;
-  z-index: 1;
-  background: var(--bg);
-  transform: translate3d(var(--swipe-offset), 0, 0);
-  transition: transform 0.18s ease-out;
-  touch-action: pan-y;
-}
-
-.article-page.is-swiping .article-gesture-frame {
-  transition: none;
-}
-
-.article-swipe-hint {
-  display: none;
-  margin: 1rem 0 0;
   text-align: center;
   color: var(--muted);
-  font-size: 0.8rem;
-  letter-spacing: 0.03em;
+  font-size: 0.85rem;
 }
 
-.article-swipe-toast {
-  position: fixed;
-  left: 50%;
-  bottom: 1.2rem;
-  z-index: 50;
-  margin: 0;
-  padding: 0.55rem 0.95rem;
-  border-radius: 999px;
-  background: rgba(44, 26, 14, 0.88);
-  color: #fff;
-  font-size: 0.82rem;
-  letter-spacing: 0.03em;
-  opacity: 0;
-  pointer-events: none;
-  transform: translate(-50%, 10px);
-  transition: opacity 0.18s ease, transform 0.18s ease;
-}
-
-.article-swipe-toast.is-visible {
-  opacity: 1;
-  transform: translate(-50%, 0);
-}
-
-/* ============================================================
-   我的最愛頁
-   ============================================================ */
-.favorites-header {
-  margin-bottom: 1.2rem;
-}
-
-.ui.header.favorites-title {
-  font-family: var(--font-serif) !important;
-  color: var(--heading) !important;
-  margin-bottom: 0.45rem !important;
-}
-
-.favorites-subtitle {
-  color: var(--muted);
-  margin: 0;
-}
-
-.favorites-loading {
-  color: var(--muted);
-}
-
-.favorites-list {
-  display: grid;
-  gap: 0.95rem;
-}
-
-.favorite-card {
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  background: #fff;
-  padding: 1rem 1.1rem;
-}
-
-.favorite-title {
-  display: inline-block;
-  font-size: 1.08rem;
-  font-weight: 600;
-  color: var(--secondary-dark);
-  text-decoration: none;
-  margin-bottom: 0.4rem;
-}
-
-.favorite-title:hover {
-  text-decoration: underline;
-}
-
-.favorite-description {
-  margin: 0 0 0.6rem;
-  color: #6b4f35;
-  line-height: 1.7;
-}
-
-.favorite-meta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.25rem 0.9rem;
-  color: var(--muted);
-  font-size: 0.82rem;
-  margin-bottom: 0.6rem;
-}
-
-.favorite-path {
-  word-break: break-all;
-}
-
-.favorite-remove,
-.favorites-clear {
-  appearance: none;
-  border: 1px solid rgba(126, 87, 194, 0.35);
-  border-radius: 999px;
-  background: rgba(179, 157, 219, 0.12);
-  color: var(--heading);
-  font-size: 0.82rem;
-  letter-spacing: 0.02em;
-  cursor: pointer;
-  padding: 0.28rem 0.7rem;
-}
-
-.favorite-remove:hover,
-.favorites-clear:hover {
-  background: rgba(179, 157, 219, 0.2);
-}
-
-.favorites-clear {
-  margin-top: 1rem;
-}
-
-.favorites-empty {
-  border: 1px dashed var(--border);
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.65);
-  padding: 1.2rem 1rem;
-}
-
-.favorites-empty-title {
-  margin: 0 0 0.5rem;
-  color: var(--heading);
-  font-size: 1.1rem;
-}
-
-.favorites-empty-tip {
-  margin: 0 0 0.75rem;
-  color: var(--muted);
-}
-
-.favorites-empty-link {
+.site-footer a {
   color: var(--primary-dark);
-  text-decoration: none;
-}
-
-.favorites-empty-link:hover {
-  text-decoration: underline;
-}
-
-/* ============================================================
-   文章頁尾
-   ============================================================ */
-.article-footer {
-  margin-top: 2.5rem;
-}
-
-/* 分隔線改淡藍 */
-.article-footer .ui.divider {
-  border-top-color: var(--primary) !important;
-  border-bottom-color: transparent !important;
-  margin-bottom: 1rem !important;
-}
-
-.back-link {
-  color: var(--muted);
-  text-decoration: none;
-  font-size: 0.9rem;
-  letter-spacing: 0.03em;
-}
-
-.back-link:hover {
-  color: var(--primary-dark);
-  text-decoration: underline;
-}
-
-/* ============================================================
-   Semantic UI 全域覆蓋
-   確保 max-width 不被 .ui.container 蓋掉
-   ============================================================ */
-.ui.container {
-  max-width: var(--max-width) !important;
-}
-
-/* 確保連結顏色一致 */
-a {
-  color: var(--primary-dark);
-}
-
-/* ============================================================
-   RWD — 手機 (≤ 600px)
-   ============================================================ */
-@media screen and (max-width: 600px) {
-  .page {
-    padding: 1rem;
-  }
-
-  .site-header {
-    padding: 1.5rem 0.75rem 1.2rem;
-  }
-
-  .site-header .ui.header.site-title,
-  h1.ui.header.site-title {
-    font-size: 1.85rem !important;
-    letter-spacing: 0.1em;
-  }
-
-  .tagline {
-    font-size: 1rem;
-  }
-
-  .ui.items.article-list > .item.article-card {
-    padding: 0.9rem 1rem !important;
-  }
-
-  .article-body h1 { font-size: 1.4rem; }
-  .article-body h2 { font-size: 1.2rem; }
-
-  .quick-links {
-    margin-bottom: 0.7rem;
-  }
-
-  .quick-link-favorites {
-    font-size: 0.8rem;
-  }
-
-  .quick-favorite-button {
-    font-size: 0.8rem;
-  }
-
-  .article-swipe-hint {
-    display: block;
-  }
-}
-
-/* ============================================================
-   RWD — 平板 (601px – 1024px)
-   ============================================================ */
-@media screen and (min-width: 601px) and (max-width: 1024px) {
-  .page {
-    padding: 1.5rem 2rem;
-  }
-
-  .site-header .ui.header.site-title,
-  h1.ui.header.site-title {
-    font-size: 2.12rem !important;
-  }
-}
-
-/* ============================================================
-   RWD — 電腦 (≥ 1025px)
-   ============================================================ */
-@media screen and (min-width: 1025px) {
-  .page {
-    padding: 2.5rem 2rem;
-  }
-}
-
-@media screen and (min-width: 601px) {
-  .article-swipe-actions,
-  .article-swipe-hint {
-    display: none;
-  }
-}
-
-/* ============================================================
-   列印樣式
-   ============================================================ */
-@media print {
-  .site-header,
-  .site-footer,
-  .breadcrumb-nav,
-  .article-footer {
-    display: none !important;
-  }
-
-  body {
-    background: #fff !important;
-    color: #000 !important;
-    font-size: 11pt;
-    line-height: 1.5;
-  }
-
-  .page {
-    max-width: 100%;
-    padding: 0;
-    margin: 0;
-  }
-
-  .article-body blockquote {
-    border-left: 2pt solid #888;
-    background: none;
-    color: #333;
-  }
-
-  /* 印出外部連結網址，站內連結不印 */
-  a[href]::after {
-    content: " (" attr(href) ")";
-    font-size: 0.82em;
-    color: #555;
-  }
-
-  a[href^="/"]::after,
-  a[href^="#"]::after {
-    content: none;
-  }
 }

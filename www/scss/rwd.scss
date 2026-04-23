@@ -1,4 +1,3 @@
-@charset "UTF-8";
 :root {
   --rwd-phone-max: 599px;
   --rwd-tablet-min: 600px;
@@ -39,12 +38,14 @@ h1.ui.header.site-title {
     justify-content: flex-start;
     gap: 0.2rem;
   }
+
   .ui.horizontal.divider.section-divider.category-divider::before,
   .ui.horizontal.divider.section-divider.category-divider::after {
     display: none !important;
     content: none !important;
   }
 }
+
 .ui.items.article-list > .item.article-card {
   padding: 0.85rem 1rem !important;
 }
@@ -81,6 +82,7 @@ h1.ui.header.site-title {
     display: block;
   }
 }
+
 @media (prefers-reduced-motion: reduce) {
   .site-header::before,
   .site-header::after,
@@ -89,84 +91,105 @@ h1.ui.header.site-title {
     animation: none !important;
   }
 }
+
 /* 平板（600px–1023px） */
 @media (min-width: 600px) and (max-width: 1023px) {
   :root {
     --max-width: 720px;
   }
+
   .page {
     padding: 1.75rem 1.35rem;
   }
+
   .site-header {
     padding: 2rem 1rem 1.65rem;
     margin-bottom: 1.75rem;
   }
+
   .site-header .ui.header.site-title,
   h1.ui.header.site-title {
     font-size: 2.1rem !important;
     letter-spacing: 0.12em !important;
   }
+
   .tagline {
     font-size: 1.08rem;
   }
+
   .ui.items.article-list .header.article-title {
     font-size: 1.16rem !important;
   }
+
   .article-body h2 {
     font-size: 1.42rem;
   }
+
   .ui.breadcrumb.breadcrumb-nav {
     font-size: 0.86rem;
   }
 }
+
 /* 電腦（>= 1024px） */
 @media (min-width: 1024px) {
   :root {
     --max-width: 800px;
   }
+
   .page {
     padding: 2rem 1.5rem;
   }
+
   .site-header {
     padding: 2.2rem 1rem 1.8rem;
     margin-bottom: 2rem;
   }
+
   .site-header .ui.header.site-title,
   h1.ui.header.site-title {
     font-size: 2.35rem !important;
     letter-spacing: 0.15em !important;
   }
+
   .tagline {
     font-size: 1.12rem;
   }
+
   .ui.horizontal.divider.section-divider {
     font-size: 1rem;
     margin-bottom: 1.4rem;
   }
+
   .ui.items.article-list > .item.article-card {
     padding: 1rem 1.2rem !important;
   }
+
   .ui.items.article-list .header.article-title {
     font-size: 1.22rem !important;
   }
+
   .article-body h2 {
     font-size: 1.5rem;
   }
+
   .ui.breadcrumb.breadcrumb-nav {
     font-size: 0.88rem;
     margin-bottom: 2rem;
   }
+
   .site-footer {
     font-size: 0.85rem;
     margin-top: 2rem;
   }
 }
+
 @media screen and (min-width: 601px) {
   .article-swipe-actions,
   .article-swipe-hint {
     display: none;
   }
 }
+
 /* 列印 */
 @media print {
   *,
@@ -175,20 +198,24 @@ h1.ui.header.site-title {
     box-shadow: none !important;
     text-shadow: none !important;
   }
+
   html {
     font-size: 12pt;
   }
+
   body {
     background: #fff !important;
     color: #000 !important;
     font-size: 11pt;
     line-height: 1.6;
   }
+
   .page {
     max-width: none !important;
     margin: 0 !important;
     padding: 0.5cm 0.8cm !important;
   }
+
   .site-header {
     background: none !important;
     border: none !important;
@@ -198,42 +225,51 @@ h1.ui.header.site-title {
     margin-bottom: 1rem !important;
     overflow: visible !important;
   }
+
   .site-header::before,
   .site-header::after,
   .site-header-wave {
     display: none !important;
   }
+
   .site-header .ui.header.site-title,
   h1.ui.header.site-title {
     color: #000 !important;
     font-size: 18pt !important;
   }
+
   .ui.horizontal.divider.section-divider::before,
   .ui.horizontal.divider.section-divider::after {
     background-color: #999 !important;
   }
+
   .ui.horizontal.divider.section-divider {
     color: #000 !important;
   }
+
   .ui.items.article-list > .item.article-card {
     border: 1px solid #ccc !important;
     break-inside: avoid;
     page-break-inside: avoid;
   }
+
   .ui.label.article-date {
     border: 1px solid #999 !important;
     background: #f5f5f5 !important;
     color: #000 !important;
   }
+
   .ui.items.article-list .header.article-title {
     color: #000 !important;
   }
+
   .ui.items.article-list .header.article-title::after {
-    content: " (" attr(href) ")";
+    content: ' (' attr(href) ')';
     font-size: 9pt;
     font-weight: normal;
     word-break: break-all;
   }
+
   .article-body h1,
   .article-body h2,
   .article-body h3 {
@@ -241,25 +277,30 @@ h1.ui.header.site-title {
     break-after: avoid;
     page-break-after: avoid;
   }
-  .article-body a[href^=http]::after {
-    content: " (" attr(href) ")";
+
+  .article-body a[href^='http']::after {
+    content: ' (' attr(href) ')';
     font-size: 9pt;
     font-weight: normal;
     word-break: break-all;
   }
+
   .article-body blockquote {
     border-left-color: #666 !important;
     background: #f9f9f9 !important;
     color: #000 !important;
   }
+
   .site-footer {
     margin-top: 1.5rem;
     font-size: 9pt;
     color: #333 !important;
   }
+
   .site-footer a {
     color: #000 !important;
   }
+
   .footer-divider.ui.divider {
     border-top-color: #999 !important;
   }

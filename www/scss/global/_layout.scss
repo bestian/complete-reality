@@ -1,0 +1,11 @@
+.page {
+  max-width: var(--max-width);
+  display: flex !important;
+  flex-direction: column !important;
+  margin: 0 auto !important;
+  padding: 2rem 1.5rem;
+}
+
+.ui.container {
+  max-width: var(--max-width) !important;
+}

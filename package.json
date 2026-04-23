@@ -8,7 +8,9 @@
     "preview": "npm run build && vite preview",
     "deploy": "npm run build && wrangler deploy",
     "prerender": "npm run copy-css && npx tsx scripts/prerender.ts",
-    "copy-css": "cp node_modules/semantic-ui-css/semantic.min.css www/css/semantic.min.css"
+    "copy-css": "npm run copy-semantic-css && npm run compile-scss",
+    "copy-semantic-css": "cp node_modules/semantic-ui-css/semantic.min.css www/css/semantic.min.css",
+    "compile-scss": "sass --no-source-map --style=expanded www/scss:www/css"
   },
   "keywords": [],
   "author": "",
@@ -28,6 +30,7 @@
     "tsx": "^4.21.0",
     "typescript": "^6.0.3",
     "vite": "^8.0.8",
-    "wrangler": "^4.83.0"
+    "wrangler": "^4.83.0",
+    "sass": "^1.93.2"
   }
 }

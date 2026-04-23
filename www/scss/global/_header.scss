@@ -1,0 +1,137 @@
+@keyframes site-header-water {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1) rotate(0deg);
+  }
+  28% {
+    transform: translate3d(2.2%, -2.8%, 0) scale(1.05) rotate(0.45deg);
+  }
+  55% {
+    transform: translate3d(-2.5%, 1.2%, 0) scale(0.97) rotate(-0.35deg);
+  }
+  78% {
+    transform: translate3d(1%, 2%, 0) scale(1.02) rotate(0.2deg);
+  }
+}
+
+@keyframes site-header-sparkle {
+  0%,
+  100% {
+    opacity: 0.78;
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    opacity: 1;
+    transform: translate3d(-1.8%, 1.4%, 0);
+  }
+}
+
+@keyframes site-header-wave-flow {
+  from {
+    background-position:
+      0 calc(100% - 2px),
+      0 0;
+  }
+  to {
+    background-position:
+      var(--site-header-wave-tile-width) calc(100% - 2px),
+      0 0;
+  }
+}
+
+.site-header {
+  position: relative;
+  overflow-y: visible;
+  text-align: center;
+  padding: 2.2rem 1rem 1.8rem;
+  margin-bottom: 2rem;
+  border-radius: 8px;
+  background: linear-gradient(
+    152deg,
+    #eaf3fb 0%,
+    #f5f0fa 38%,
+    #e8f4fc 72%,
+    #f2ecf8 100%
+  );
+}
+
+.site-header::before {
+  content: '';
+  position: absolute;
+  z-index: 0;
+  inset: -45% -28%;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 58% 45% at 32% 92%, rgba(168, 216, 234, 0.48), transparent 60%),
+    radial-gradient(ellipse 52% 40% at 68% 88%, rgba(179, 157, 219, 0.34), transparent 58%),
+    radial-gradient(ellipse 48% 36% at 48% 96%, rgba(255, 255, 255, 0.3), transparent 52%);
+  animation: site-header-water 20s ease-in-out infinite;
+  will-change: transform;
+}
+
+.site-header::after {
+  content: '';
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(1.4px 1.4px at 16px 22px, rgba(255, 255, 255, 0.95), transparent),
+    radial-gradient(1.2px 1.2px at 44px 10px, rgba(237, 231, 246, 0.92), transparent),
+    radial-gradient(1px 1px at 9px 48px, rgba(179, 157, 219, 0.68), transparent),
+    radial-gradient(1.5px 1.5px at 58px 36px, rgba(255, 255, 255, 0.82), transparent),
+    radial-gradient(1px 1px at 72px 18px, rgba(168, 216, 234, 0.5), transparent);
+  background-size: 76px 68px, 92px 84px, 64px 72px, 88px 76px, 104px 96px;
+  background-position:
+    0 0,
+    14px 28px,
+    33px 6px,
+    8px 40px,
+    52px 12px;
+  animation: site-header-sparkle 14s ease-in-out infinite;
+}
+
+.site-header-inner {
+  position: relative;
+  z-index: 1;
+}
+
+.site-header-wave {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -35px;
+  height: 65px;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.96;
+  background-image:
+    url('/images/waterflow.svg'),
+    linear-gradient(to top, rgba(255, 255, 255, 0.42), rgba(255, 255, 255, 0) 72%);
+  background-repeat: repeat-x, no-repeat;
+  background-size:
+    var(--site-header-wave-tile-width) 64px,
+    100% 100%;
+  background-position:
+    0 calc(100% - 2px),
+    0 0;
+  animation: site-header-wave-flow 10s linear infinite;
+  will-change: background-position;
+}
+
+.site-header .ui.header.site-title,
+h1.ui.header.site-title {
+  font-family: var(--font-serif) !important;
+  font-size: 2.35rem !important;
+  letter-spacing: 0.15em;
+  color: var(--heading) !important;
+  margin: 0 0 0.5rem !important;
+}
+
+.tagline {
+  color: var(--secondary-dark);
+  font-size: 1.62rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  margin: 0;
+}
