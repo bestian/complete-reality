@@ -3,9 +3,11 @@ export interface ArticleInfo {
   title: string
   date: string
   summary: string
-  author: string
+  author?: string
   attention_needed?: boolean
   category?: string
+  type?: 'article' | 'video'
+  link?: string
 }
 
 export const categories: string[] = [
@@ -48,6 +50,15 @@ export const articles: ArticleInfo[] = [
     category: "隨筆雜感",
     date: '2012.05.06',
     summary: '在山上，要走路。走山路，是不說話的。',
+  },
+  {
+    slug: '經脈通震法',
+    title: '經脈通震法',
+    category: '以道護體',
+    date: '2026.04.23',
+    summary: '道家幫助初入門者震通全身經絡的日常保健方式。無甚禁忌，唯飯後不宜。',
+    type: 'video',
+    link: 'https://www.youtube.com/watch?v=XE5hgnDv7_8',
   },
 ]
 
