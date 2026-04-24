@@ -12,6 +12,7 @@ export interface HeadConfig {
 const MAIN_OG_IMAGE = 'https://complete-reality.bestian123.workers.dev/images/main-img.jpeg'
 const DEFAULT_OG_TITLE = '流水全真──以佛煉心、以儒應世、以道護體'
 const DEFAULT_OG_DESCRIPTION = '流水全真，探索修身養性之道，融合佛、儒、道三家智慧。'
+const DEFAULT_THEME_COLOR = '#ffffff'
 
 /**
  * 所有路由的 HEAD 設定
@@ -83,6 +84,12 @@ export function renderHeadTags(config: HeadConfig, path: string): string {
     `<meta charset="UTF-8" />`,
     `<meta name="viewport" content="width=device-width, initial-scale=1" />`,
     `<title>${escapeHtml(config.title)}</title>`,
+    `<link rel="manifest" href="/site.webmanifest" />`,
+    `<meta name="theme-color" content="${DEFAULT_THEME_COLOR}" />`,
+    `<link rel="apple-touch-icon" href="/apple-touch-icon.png" />`,
+    `<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />`,
+    `<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />`,
+    `<link rel="shortcut icon" href="/favicon.ico" />`,
     `<meta property="og:title" content="${escapeHtml(ogTitle)}" />`,
     `<meta property="og:description" content="${escapeHtml(ogDescription)}" />`,
     ...stylesheets.map((href) => `<link rel="stylesheet" href="${href}" />`),
