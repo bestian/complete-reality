@@ -37,6 +37,17 @@ function injectAuthor(contentHtml: string, author: string): string {
       <div class="quick-links">
         <button
           type="button"
+          class="quick-share-button"
+          data-share-button
+          aria-label="分享文章"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
+            <path fill="currentColor" d="M12 2 7 7l1.4 1.4L11 5.8V16h2V5.8l2.6 2.6L17 7zM5 12v8a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-8h-2v8H7v-8z"/>
+          </svg>
+          分享
+        </button>
+        <button
+          type="button"
           class="quick-favorite-button"
           data-favorite-button
           aria-label="加入我的最愛"

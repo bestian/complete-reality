@@ -78,6 +78,46 @@ function setFavoriteButtonState(button, saved) {
   button.textContent = saved ? '★ 已收藏' : '☆ 收藏'
 }
 
+async function copyToClipboard(url, showToast) {
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    try {
+      await navigator.clipboard.writeText(url)
+      showToast('已複製連結')
+      return
+    } catch {
+      // fall through to manual hint
+    }
+  }
+  showToast('請手動複製網址')
+}
+
+function setupShareButton(page, showToast) {
+  const shareButton = page.querySelector('[data-share-button]')
+  if (!shareButton) return
+
+  shareButton.addEventListener('click', async () => {
+    const meta = getArticleMeta(page)
+    const url = new URL(meta.path, window.location.origin).href
+    const shareData = {
+      title: meta.title,
+      text: meta.description || meta.title,
+      url,
+    }
+
+    if (typeof navigator.share === 'function') {
+      try {
+        await navigator.share(shareData)
+        return
+      } catch (err) {
+        if (err && err.name === 'AbortError') return
+        // fall through to clipboard fallback
+      }
+    }
+
+    await copyToClipboard(url, showToast)
+  })
+}
+
 function setupFavoriteButton(page, showToast) {
   const favoriteButton = page.querySelector('[data-favorite-button]')
   if (!favoriteButton) return
@@ -219,6 +259,7 @@ function setupSwipeGesture(page, showToast) {
 
 function setupArticlePage(page) {
   const showToast = createToastController(page.querySelector('.article-swipe-toast'))
+  setupShareButton(page, showToast)
   setupFavoriteButton(page, showToast)
   setupSwipeGesture(page, showToast)
 }

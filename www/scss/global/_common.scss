@@ -54,6 +54,31 @@
   transition: background-color 0.2s, border-color 0.2s, color 0.2s;
 }
 
+.quick-share-button {
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.32rem;
+  border: 1px solid rgba(100, 181, 246, 0.35);
+  border-radius: 999px;
+  background: rgba(168, 216, 234, 0.14);
+  color: var(--secondary-dark);
+  font-size: 0.88rem;
+  letter-spacing: 0.04em;
+  padding: 0.35rem 0.72rem;
+  cursor: pointer;
+  transition: background-color 0.2s, border-color 0.2s;
+}
+
+.quick-share-button:hover {
+  background: rgba(168, 216, 234, 0.28);
+  border-color: rgba(100, 181, 246, 0.55);
+}
+
+.quick-share-button svg {
+  display: block;
+}
+
 .quick-favorite-button:hover {
   background: rgba(179, 157, 219, 0.2);
   border-color: rgba(126, 87, 194, 0.46);
