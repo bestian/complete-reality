@@ -35,6 +35,9 @@ const sortedArticles = [...articles].sort((a, b) => {
           </template>
         </div>
 
+        <!-- 關鍵字搜尋（Vue island，無 JS 時不顯示） -->
+        <div id="list-search-island" class="list-search-island"></div>
+
         <!-- 文章列表用 Semantic UI items -->
         <div class="ui relaxed items article-list">
 

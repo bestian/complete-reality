@@ -29,6 +29,9 @@ defineProps<{
 
         <div class="ui horizontal divider section-divider">目前分類：{{ category }}</div>
 
+        <!-- 關鍵字搜尋（Vue island，無 JS 時不顯示） -->
+        <div id="list-search-island" class="list-search-island"></div>
+
         <div class="ui relaxed items article-list">
           <div class="quick-links">
             <a href="/" class="quick-link-favorites">回首頁</a>

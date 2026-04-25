@@ -101,3 +101,56 @@
   line-height: 1.7;
   margin-top: 0.2rem;
 }
+
+.list-search-island {
+  margin: 0.6rem 0 1.1rem;
+}
+.list-search-island:empty {
+  display: none;
+}
+
+.list-search {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.list-search-input {
+  flex: 1 1 12rem;
+  min-width: 0;
+  padding: 0.55rem 0.9rem;
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  color: var(--text);
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.list-search-input::placeholder {
+  color: var(--muted);
+}
+.list-search-input:focus {
+  border-color: var(--secondary-mid);
+  box-shadow: 0 0 0 3px rgba(100, 181, 246, 0.18);
+}
+
+.list-search-count {
+  font-family: var(--font-serif);
+  font-size: 0.85rem;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+mark.search-highlight {
+  background: #fff59d;
+  color: inherit;
+  padding: 0 0.08em;
+  border-radius: 2px;
+}
+
+.ui.items.article-list > .item.article-card[hidden] {
+  display: none !important;
+}

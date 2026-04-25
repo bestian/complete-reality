@@ -33,6 +33,7 @@ function buildPage(headTags: string, bodyHtml: string): string {
     ${bodyHtml}
     <script type="module" src="/js/article-gestures.js"></script>
     <script type="module" src="/js/favorites-page.js"></script>
+    <script type="module" src="/js/list-search.js"></script>
   </body>
 </html>`
 }
