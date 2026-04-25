@@ -84,6 +84,21 @@ export const articles: ArticleInfo[] = [
     type: 'video',
     link: 'https://www.youtube.com/watch?v=XE5hgnDv7_8',
   },
+  {
+    slug: '全真是什麼',
+    title: '全真是什麼',
+    author: '李雅卿',
+    date: '2026.04.24',
+    summary: '南宋王重陽融儒釋道三家義理創立全真道，一言止殺，倡性命雙修、苦己濟世；以白話略述其源流、特質與現代傳承之念。',
+  },
+  {
+    slug: '身化太極，魂入太虛～～感念吾師 熊先生衛',
+    title: '身化太極，魂入太虛～～感念吾師 熊先生衛',
+    author: '李雅卿',
+    category: '以道護體',
+    date: '2026.04.25',
+    summary: '追憶與熊衛師父三十年的師承因緣，記下太極導引如何救我於危難之中，以及暌別師門至今的愧念與感恩。',
+  },
 ]
 
 export function getArticleBySlug(slug: string): ArticleInfo | undefined {
