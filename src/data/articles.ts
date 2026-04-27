@@ -11,6 +11,7 @@ export interface ArticleInfo {
 }
 
 export const categories: string[] = [
+  "通論概說",
   "以佛煉心",
   "以儒應世",
   "以道護體",
@@ -31,6 +32,7 @@ export const articles: ArticleInfo[] = [
     slug: '緣起',
     title: '緣起',
     author: '李雅卿',
+    category: '通論概說',
     date: '2026.04.21',
     summary: '記錄我從新聞工作者走入全真修行的因緣、師承與三十餘年未輟的體悟，並以數位方式傳承全真的初心。',
     attention_needed: true,
@@ -88,6 +90,7 @@ export const articles: ArticleInfo[] = [
     slug: '全真是什麼',
     title: '全真是什麼',
     author: '李雅卿',
+    category: '通論概說',
     date: '2026.04.24',
     summary: '南宋王重陽融儒釋道三家義理創立全真道，一言止殺，倡性命雙修、苦己濟世；以白話略述其源流、特質與現代傳承之念。',
   },
@@ -98,6 +101,14 @@ export const articles: ArticleInfo[] = [
     category: '以道護體',
     date: '2026.04.25',
     summary: '追憶與熊衛師父三十年的師承因緣，記下太極導引如何救我於危難之中，以及暌別師門至今的愧念與感恩。',
+  },
+  {
+    slug: '台灣道場淺介',
+    title: '台灣道場淺介',
+    author: '李雅卿',
+    category: '通論概說',
+    date: '2026.04.27',
+    summary: '簡介台灣諸宗教道場與學脈，記下這座小島如何容納多元信仰、激盪出包容的民主文化。',
   },
 ]
 
