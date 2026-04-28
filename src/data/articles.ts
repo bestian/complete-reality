@@ -110,6 +110,22 @@ export const articles: ArticleInfo[] = [
     date: '2026.04.27',
     summary: '簡介台灣諸宗教道場與學脈，記下這座小島如何容納多元信仰、激盪出包容的民主文化。',
   },
+  {
+    slug: '養生小技系列之一：經脈通振法',
+    title: '養生小技系列之一：經脈通振法',
+    author: '李雅卿',
+    category: '以道護體',
+    date: '2026.04.28',
+    summary: '來靜師父傳授的日常保健功法：以腳尖、腳跟輪跳振通全身經脈，幫助了我父親改善晚年腿部無力，也幫助了久坐的現代人調理氣血。',
+  },
+  {
+    slug: '養生小技系列之二：補水',
+    title: '養生小技系列之二：補水',
+    author: '李雅卿',
+    category: '以道護體',
+    date: '2026.04.28',
+    summary: '現代人常因怕麻煩而喝水不足，影響全身代謝。分享一位師兄的妙招：把全天水量帶去上班，「每次起身先喝水再上廁所」，以膀胱自然提醒取代刻意記錄。',
+  },
 ]
 
 export function getArticleBySlug(slug: string): ArticleInfo | undefined {
