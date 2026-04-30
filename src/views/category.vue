@@ -1,10 +1,19 @@
 <script setup lang="ts">
+import { computed } from 'vue'
 import { categories, type ArticleInfo } from '../data/articles'
 
-defineProps<{
+const props = defineProps<{
   category: string
   articles: ArticleInfo[]
 }>()
+
+const sortedArticles = computed(() =>
+  [...props.articles].sort((a, b) => {
+    if (a.attention_needed && !b.attention_needed) return -1
+    if (!a.attention_needed && b.attention_needed) return 1
+    return b.date.replace(/\./g, '').localeCompare(a.date.replace(/\./g, ''))
+  })
+)
 </script>
 
 <template>
@@ -39,7 +48,7 @@ defineProps<{
           </div>
 
           <div
-            v-for="article in articles"
+            v-for="article in sortedArticles"
             :key="article.slug"
             class="item article-card"
           >
@@ -69,7 +78,7 @@ defineProps<{
             </div>
           </div>
 
-          <p v-if="articles.length === 0" class="description article-summary">此分類目前沒有文章。</p>
+          <p v-if="sortedArticles.length === 0" class="description article-summary">此分類目前沒有文章。</p>
         </div>
       </section>
     </main>
