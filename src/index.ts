@@ -38,8 +38,13 @@ function buildPage(headTags: string, bodyHtml: string): string {
 </html>`
 }
 
+function getInitialKeyword(url: string): string {
+  return new URL(url).searchParams.get('keyword') ?? ''
+}
+
 app.get('/', async (c) => {
-  const vueApp = createSSRApp(IndexView)
+  const initialKeyword = getInitialKeyword(c.req.url)
+  const vueApp = createSSRApp(IndexView, { initialKeyword })
   const bodyHtml = await renderToString(vueApp)
   const headTags = renderHeadTags(getHead('/'), '/')
   return c.html(buildPage(headTags, bodyHtml))
@@ -47,8 +52,9 @@ app.get('/', async (c) => {
 
 app.get('/category/:category', async (c) => {
   const category = decodeURIComponent(c.req.param('category'))
+  const initialKeyword = getInitialKeyword(c.req.url)
   const articles = getArticlesByCategory(category)
-  const vueApp = createSSRApp(CategoryView, { category, articles })
+  const vueApp = createSSRApp(CategoryView, { category, articles, initialKeyword })
   const bodyHtml = await renderToString(vueApp)
   const categoryPath = `/category/${category}`
   const headTags = renderHeadTags(getHead(categoryPath), categoryPath)

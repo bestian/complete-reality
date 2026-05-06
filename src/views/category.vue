@@ -5,6 +5,7 @@ import { categories, type ArticleInfo } from '../data/articles'
 const props = defineProps<{
   category: string
   articles: ArticleInfo[]
+  initialKeyword?: string
 }>()
 
 const sortedArticles = computed(() =>
@@ -14,6 +15,14 @@ const sortedArticles = computed(() =>
     return b.date.replace(/\./g, '').localeCompare(a.date.replace(/\./g, ''))
   })
 )
+
+function withKeyword(path: string): string {
+  const keyword = (props.initialKeyword ?? '').trim()
+  if (!keyword) return path
+
+  const params = new URLSearchParams({ keyword })
+  return `${path}?${params.toString()}`
+}
 </script>
 
 <template>
@@ -31,7 +40,7 @@ const sortedArticles = computed(() =>
         <div class="ui horizontal divider section-divider category-divider">
           分類：
           <template v-for="(item, idx) in categories" :key="item">
-            <a :href="`/category/${encodeURIComponent(item)}`" class="category-link">{{ item }}</a>
+            <a :href="withKeyword(`/category/${encodeURIComponent(item)}`)" class="category-link" data-list-state-link>{{ item }}</a>
             <span v-if="idx < categories.length - 1" class="category-sep">／</span>
           </template>
         </div>
@@ -39,11 +48,17 @@ const sortedArticles = computed(() =>
         <div class="ui horizontal divider section-divider">目前分類：{{ category }}</div>
 
         <!-- 關鍵字搜尋（Vue island，無 JS 時不顯示） -->
-        <div id="list-search-island" class="list-search-island"></div>
+        <div id="list-search-island" class="list-search-island" :data-initial-keyword="props.initialKeyword ?? ''"></div>
 
         <div class="ui relaxed items article-list">
           <div class="quick-links">
-            <a href="/" class="quick-link-favorites">回首頁</a>
+            <a :href="withKeyword('/')" class="quick-link-favorites" data-list-state-link>回首頁</a>
+            <button type="button" class="quick-share-button" data-list-share-button aria-label="分享目前搜尋結果">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
+                <path fill="currentColor" d="M12 2 7 7l1.4 1.4L11 5.8V16h2V5.8l2.6 2.6L17 7zM5 12v8a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-8h-2v8H7v-8z"></path>
+              </svg>
+              分享
+            </button>
             <a href="/favorites" class="quick-link-favorites">我的最愛</a>
           </div>
 

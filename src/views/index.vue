@@ -1,11 +1,25 @@
 <script setup lang="ts">
 import { articles, categories } from '../data/articles'
 
+const props = withDefaults(defineProps<{
+  initialKeyword?: string
+}>(), {
+  initialKeyword: '',
+})
+
 const sortedArticles = [...articles].sort((a, b) => {
   if (a.attention_needed && !b.attention_needed) return -1
   if (!a.attention_needed && b.attention_needed) return 1
   return b.date.replace(/\./g, '').localeCompare(a.date.replace(/\./g, ''))
 })
+
+function withKeyword(path: string): string {
+  const keyword = props.initialKeyword.trim()
+  if (!keyword) return path
+
+  const params = new URLSearchParams({ keyword })
+  return `${path}?${params.toString()}`
+}
 </script>
 
 <template>
@@ -30,19 +44,25 @@ const sortedArticles = [...articles].sort((a, b) => {
         <div class="ui horizontal divider section-divider category-divider">
           <span>分類：</span>
           <template v-for="(category, idx) in categories" :key="category">
-            <a :href="`/category/${encodeURIComponent(category)}`" class="category-link">{{ category }}</a>
+            <a :href="withKeyword(`/category/${encodeURIComponent(category)}`)" class="category-link" data-list-state-link>{{ category }}</a>
             <span v-if="idx < categories.length - 1" class="category-sep">／</span>
           </template>
         </div>
 
         <!-- 關鍵字搜尋（Vue island，無 JS 時不顯示） -->
-        <div id="list-search-island" class="list-search-island"></div>
+        <div id="list-search-island" class="list-search-island" :data-initial-keyword="props.initialKeyword"></div>
 
         <!-- 文章列表用 Semantic UI items -->
         <div class="ui relaxed items article-list">
 
           <!-- 快速連結 -->
           <div class="quick-links">
+            <button type="button" class="quick-share-button" data-list-share-button aria-label="分享目前搜尋結果">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
+                <path fill="currentColor" d="M12 2 7 7l1.4 1.4L11 5.8V16h2V5.8l2.6 2.6L17 7zM5 12v8a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-8h-2v8H7v-8z"></path>
+              </svg>
+              分享
+            </button>
             <a href="/favorites" class="quick-link-favorites">我的最愛</a>
           </div>
           
@@ -84,6 +104,12 @@ const sortedArticles = [...articles].sort((a, b) => {
       <section class="favorites-section">
         <!-- 快速連結 -->
         <div class="quick-links">
+          <button type="button" class="quick-share-button" data-list-share-button aria-label="分享目前搜尋結果">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
+              <path fill="currentColor" d="M12 2 7 7l1.4 1.4L11 5.8V16h2V5.8l2.6 2.6L17 7zM5 12v8a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-8h-2v8H7v-8z"></path>
+            </svg>
+            分享
+          </button>
           <a href="/favorites" class="quick-link-favorites">我的最愛</a>
         </div>
       </section>
