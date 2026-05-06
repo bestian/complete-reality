@@ -6,10 +6,15 @@ defineProps<{
   description: string
   path: string
   author: string
+  category?: string
 }>()
 
 function injectAuthor(contentHtml: string, author: string): string {
   return contentHtml.replace('</h2>', `<span class="author ">作者：${author}</span></h2>`)
+}
+
+function categoryPath(category: string): string {
+  return `/category/${encodeURIComponent(category)}`
 }
 </script>
 
@@ -31,6 +36,10 @@ function injectAuthor(contentHtml: string, author: string): string {
       <nav class="ui breadcrumb breadcrumb-nav">
         <a href="/" class="section back-section">首頁</a>
         <span class="divider breadcrumb-sep"> › </span>
+        <template v-if="category">
+          <a :href="categoryPath(category)" class="section back-section">{{ category }}</a>
+          <span class="divider breadcrumb-sep"> › </span>
+        </template>
         <span class="active section article-slug">{{ slug }}</span>
       </nav>
 

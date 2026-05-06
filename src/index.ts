@@ -104,6 +104,7 @@ app.get('/article/:slug', async (c) => {
     description: article?.summary ?? head.description ?? '',
     path,
     author: article?.author ?? '',
+    category: article?.category,
   })
   const bodyHtml = await renderToString(vueApp)
   const headTags = renderHeadTags(head, path)

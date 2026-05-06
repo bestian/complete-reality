@@ -126,6 +126,7 @@ async function prerenderArticle(ArticleView: object, article: (typeof articles)[
     author: article.author,
     attention_needed: article.attention_needed ?? false,
     path,
+    category: article.category,
   })
   const bodyHtml = await renderToString(vueApp)
   const headTags = renderHeadTags(getHead(path), path)
