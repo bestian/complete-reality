@@ -17,7 +17,7 @@
   "description": "",
   "dependencies": {
     "@vue/server-renderer": "^3.5.32",
-    "hono": "^4.12.16",
+    "hono": "^4.12.18",
     "marked": "^18.0.2",
     "semantic-ui-css": "^2.5.0",
     "vue": "^3.5.32"
