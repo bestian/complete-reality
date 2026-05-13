@@ -150,6 +150,14 @@ export const articles: ArticleInfo[] = [
     date: '2026.04.30',
     summary: '清晨深呼吸適合入門，面光垂手，吸氣抬手、閉氣合掌、呼氣落手，配合默數節律；進階者可循道家逆呼吸法行小周天，九次即可撫平思緒、安定迎接一日。',
   },
+  {
+    slug: '行住坐臥，道在日常',
+    title: '行住坐臥，道在日常',
+    author: '李雅卿',
+    category: '以佛煉心',
+    date: '2026.05.13',
+    summary: '修道無須隱居或翻天覆地，只要把注意力從外在轉回自我改造，便已上路。全真派是講求「性（心行）、命（身體）雙修，三家一貫，重在知行合一、為學日益、為道日損。',
+  },
 ]
 
 export function getArticleBySlug(slug: string): ArticleInfo | undefined {
