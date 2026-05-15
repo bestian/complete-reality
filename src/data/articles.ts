@@ -174,6 +174,14 @@ export const articles: ArticleInfo[] = [
     date: '2026.05.15',
     summary: '源自古代道士為宮廷設計的養生功法，全套約三十分鐘，涵蓋臉頭、軀幹、腿腳、上肢與平甩收功，按摩後神清氣爽、周身舒泰，兼具美容與保健效果，站坐躺皆可行。',
   },
+  {
+    slug: '周行不殆，道在呼吸',
+    title: '周行不殆，道在呼吸',
+    author: '李雅卿',
+    category: '心法原則',
+    date: '2026.05.16',
+    summary: '呼吸是生命須臾不離的活動，也是道佛儒三家共同重視的入門。分享以呼吸補能、轉圜情緒、自癒傷病、感知周遭的日常體會，並借《莊子》壺子戲季咸的故事，說明「氣隨心轉，心不為氣所困」的修煉極致。',
+  },
 ]
 
 export function getArticleBySlug(slug: string): ArticleInfo | undefined {
