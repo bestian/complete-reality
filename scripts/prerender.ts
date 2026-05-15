@@ -9,7 +9,7 @@
  */
 import { createSSRApp } from 'vue'
 import { renderToString } from '@vue/server-renderer'
-import { readFileSync, writeFileSync, mkdirSync, existsSync, cpSync } from 'fs'
+import { readFileSync, writeFileSync, mkdirSync, existsSync, cpSync, readdirSync, rmSync } from 'fs'
 import { resolve, dirname } from 'path'
 import { marked } from 'marked'
 import { articles, categories, getArticlesByCategory } from '../src/data/articles'
@@ -66,6 +66,33 @@ function writeHtml(outputPath: string, html: string) {
   ensureDir(outputPath)
   writeFileSync(outputPath, html, 'utf-8')
   console.log(`✓ 已生成：${outputPath.replace(ROOT, '')}`)
+}
+
+function cleanStaleCategoryPages() {
+  const categoryRoot = resolve(WWW, 'category')
+
+  if (!existsSync(categoryRoot)) {
+    return
+  }
+
+  const currentCategories = new Set(categories)
+  const staleCategories = readdirSync(categoryRoot, { withFileTypes: true })
+    .filter((entry) => entry.isDirectory())
+    .map((entry) => entry.name)
+    .filter((category) => !currentCategories.has(category))
+
+  if (staleCategories.length === 0) {
+    console.log('🧹 分類頁面無需清理\n')
+    return
+  }
+
+  console.log('🧹 清理已不存在的分類頁面 …')
+  for (const category of staleCategories) {
+    const stalePath = resolve(categoryRoot, category)
+    rmSync(stalePath, { recursive: true, force: true })
+    console.log(`   已移除：${stalePath.replace(ROOT, '')}`)
+  }
+  console.log('')
 }
 
 async function prerenderIndex(IndexView: object) {
@@ -159,6 +186,7 @@ async function main() {
 
     await prerenderIndex(IndexView)
     await prerenderFavorites(FavoritesView)
+    cleanStaleCategoryPages()
     for (const category of categories) {
       await prerenderCategory(CategoryView, category)
     }
