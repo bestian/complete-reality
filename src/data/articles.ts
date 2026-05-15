@@ -167,6 +167,14 @@ export const articles: ArticleInfo[] = [
     type: 'video',
     link: 'https://www.youtube.com/watch?v=tipVLD2DXKI',
   },
+  {
+    slug: '十二經脈按摩',
+    title: '十二經脈按摩',
+    author: '李雅卿',
+    category: '以道護體',
+    date: '2026.05.15',
+    summary: '源自古代道士為宮廷設計的養生功法，全套約三十分鐘，涵蓋臉頭、軀幹、腿腳、上肢與平甩收功，按摩後神清氣爽、周身舒泰，兼具美容與保健效果，站坐躺皆可行。',
+  },
 ]
 
 export function getArticleBySlug(slug: string): ArticleInfo | undefined {
