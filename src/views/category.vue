@@ -52,6 +52,20 @@ function withKeyword(path: string): string {
 
         <div class="ui relaxed items article-list">
           <div class="quick-links">
+            <div class="font-size-toggle" role="group" aria-label="字級切換">
+              <button
+                type="button"
+                class="font-size-button font-size-button-small"
+                data-font-size-set="small"
+                aria-label="切換為小字級"
+              >小字</button>
+              <button
+                type="button"
+                class="font-size-button font-size-button-large"
+                data-font-size-set="large"
+                aria-label="切換為大字級"
+              >大字</button>
+            </div>
             <a :href="withKeyword('/')" class="quick-link-favorites" data-list-state-link>回首頁</a>
             <button type="button" class="quick-share-button" data-list-share-button aria-label="分享目前搜尋結果">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">

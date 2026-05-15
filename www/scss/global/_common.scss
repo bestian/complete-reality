@@ -20,6 +20,47 @@
   margin-bottom: 0.9rem;
 }
 
+.font-size-toggle {
+  display: inline-flex;
+  gap: 0.3rem;
+  margin-right: 0.2rem;
+}
+
+.font-size-button {
+  appearance: none;
+  display: inline-flex;
+  align-items: baseline;
+  border: 1px solid rgba(100, 181, 246, 0.35);
+  border-radius: 999px;
+  background: rgba(168, 216, 234, 0.14);
+  color: var(--secondary-dark);
+  font-family: var(--font-serif);
+  letter-spacing: 0.02em;
+  padding: 0.32rem 0.7rem;
+  cursor: pointer;
+  transition: background-color 0.2s, border-color 0.2s, color 0.2s;
+}
+
+.font-size-button-small {
+  font-size: 0.82rem;
+}
+
+.font-size-button-large {
+  font-size: 0.98rem;
+}
+
+.font-size-button:hover {
+  background: rgba(100, 181, 246, 0.28);
+  border-color: rgba(100, 181, 246, 0.6);
+  color: var(--primary-dark);
+}
+
+.font-size-button.is-active {
+  background: rgba(126, 87, 194, 0.18);
+  border-color: rgba(126, 87, 194, 0.55);
+  color: var(--heading);
+}
+
 .quick-link-favorites {
   display: inline-flex;
   align-items: center;

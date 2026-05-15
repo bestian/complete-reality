@@ -102,6 +102,15 @@
   margin-top: 0.2rem;
 }
 
+.page[data-font-size=large] .ui.items.article-list .header.article-title {
+  font-size: 1.5rem !important;
+}
+
+.page[data-font-size=large] .ui.items.article-list .description.article-summary {
+  font-size: 1.2rem;
+  line-height: 1.85;
+}
+
 .list-search-island {
   margin: 0.6rem 0 1.1rem;
 }

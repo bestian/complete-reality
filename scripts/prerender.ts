@@ -51,6 +51,7 @@ function buildPage(headTags: string, bodyHtml: string): string {
     <script type="module" src="/js/article-gestures.js"></script>
     <script type="module" src="/js/favorites-page.js"></script>
     <script type="module" src="/js/list-search.js"></script>
+    <script type="module" src="/js/font-size-toggle.js"></script>
   </body>
 </html>`
 }

@@ -44,6 +44,20 @@ function categoryPath(category: string): string {
       </nav>
 
       <div class="quick-links">
+        <div class="font-size-toggle" role="group" aria-label="字級切換">
+          <button
+            type="button"
+            class="font-size-button font-size-button-small"
+            data-font-size-set="small"
+            aria-label="切換為小字級"
+          >小字</button>
+          <button
+            type="button"
+            class="font-size-button font-size-button-large"
+            data-font-size-set="large"
+            aria-label="切換為大字級"
+          >大字</button>
+        </div>
         <button
           type="button"
           class="quick-share-button"

@@ -57,6 +57,20 @@ function withKeyword(path: string): string {
 
           <!-- 快速連結 -->
           <div class="quick-links">
+            <div class="font-size-toggle" role="group" aria-label="字級切換">
+              <button
+                type="button"
+                class="font-size-button font-size-button-small"
+                data-font-size-set="small"
+                aria-label="切換為小字級"
+              >小字</button>
+              <button
+                type="button"
+                class="font-size-button font-size-button-large"
+                data-font-size-set="large"
+                aria-label="切換為大字級"
+              >大字</button>
+            </div>
             <button type="button" class="quick-share-button" data-list-share-button aria-label="分享目前搜尋結果">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
                 <path fill="currentColor" d="M12 2 7 7l1.4 1.4L11 5.8V16h2V5.8l2.6 2.6L17 7zM5 12v8a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-8h-2v8H7v-8z"></path>
@@ -65,7 +79,7 @@ function withKeyword(path: string): string {
             </button>
             <a href="/favorites" class="quick-link-favorites">我的最愛</a>
           </div>
-          
+
           <div
             v-for="article in sortedArticles"
             :key="article.slug"
