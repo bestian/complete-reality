@@ -135,6 +135,7 @@ function withKeyword(path: string): string {
         <br/>
         個人網站：<a href="https://life3.pages.dev/#/" target="_blank" rel="noopener noreferrer">life3.pages.dev</a>
       </p>
+      <p>本站為開源專案，按此查看<a href="https://github.com/bestian/complete-reality" target="_blank" rel="noopener noreferrer">GitHub源碼</a></p>
     </footer>
 
   </div>
