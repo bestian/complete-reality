@@ -70,4 +70,16 @@ npm run deploy
 
 ## 授權
 
-目前尚未指定授權條款，後續再補上 `LICENSE`。
+本專案採取分層授權：
+
+- 程式碼：以 Apache License 2.0 授權，詳見 `LICENSE`。
+- 文件與網站內容：以 Creative Commons Attribution-ShareAlike 4.0 International（CC BY-SA 4.0）授權分享。
+- 名稱、Logo 與整體視覺識別：除非另有書面許可，保留所有權利。
+
+## License
+
+This project uses layered licensing:
+
+- Code: licensed under the Apache License 2.0. See `LICENSE`.
+- Documentation and website content: licensed under Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0).
+- Name, logo, and visual identity: all rights reserved unless separately permitted in writing.
