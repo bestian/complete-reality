@@ -86,6 +86,22 @@ function categoryPath(category: string): string {
       <!-- 底部分隔線 + 返回 -->
       <footer class="article-footer">
         <div class="ui divider"></div>
+        <div class="article-license">
+          <a
+            href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh-hant"
+            target="_blank"
+            rel="license noopener noreferrer"
+            class="article-license-link"
+          >
+            <img
+              src="/images/CC_BY_SA.png"
+              alt="CC BY-SA 4.0"
+              class="article-license-image"
+              loading="lazy"
+            >
+            <span>本站文章皆以 CC-BY-SA-4.0 創用授權分享</span>
+          </a>
+        </div>
         <a href="/" class="back-link">← 返回首頁</a>
       </footer>
     </div>

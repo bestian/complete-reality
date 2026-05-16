@@ -160,6 +160,7 @@ export const articles: ArticleInfo[] = [
   {
     slug: '十二經脈按摩',
     title: '十二經脈按摩',
+    author: '李雅卿',
     category: '功法小技',
     date: '2026.05.15',
     summary: '介紹十二經脈的位置與按摩手法，幫助調理身體機能、日常保健、養顏美容。',

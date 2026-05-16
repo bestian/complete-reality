@@ -164,6 +164,36 @@
   margin-bottom: 1rem !important;
 }
 
+.article-license {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 1rem;
+}
+
+.article-license-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: var(--muted);
+  font-size: 0.88rem;
+  line-height: 1.4;
+  text-decoration: none;
+}
+
+.article-license-link:hover {
+  color: var(--primary-dark);
+  text-decoration: underline;
+}
+
+.article-license-image {
+  display: block;
+  width: 6.5rem;
+  max-width: 32vw;
+  height: auto;
+  border-radius: 0;
+  flex: 0 0 auto;
+}
+
 .back-link {
   color: var(--muted);
   text-decoration: none;
