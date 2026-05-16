@@ -82,7 +82,7 @@ export function renderHeadTags(config: HeadConfig, path: string): string {
   const ogDescription = config.ogDescription ?? config.description ?? DEFAULT_OG_DESCRIPTION
   const parts: string[] = [
     `<meta charset="UTF-8" />`,
-    `<meta name="viewport" content="width=device-width, initial-scale=1" />`,
+    `<meta name="viewport" content="width=device-width, user-scalable=yes", initial-scale=1, maximum-scale=5 />`,
     `<title>${escapeHtml(config.title)}</title>`,
     `<link rel="manifest" href="/site.webmanifest" />`,
     `<meta name="theme-color" content="${DEFAULT_THEME_COLOR}" />`,
