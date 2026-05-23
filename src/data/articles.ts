@@ -183,6 +183,14 @@ export const articles: ArticleInfo[] = [
     date: '2026.05.16',
     summary: '呼吸是生命須臾不離的活動，也是道佛儒三家共同重視的入門。分享以呼吸補能、轉圜情緒、自癒傷病、感知周遭的日常體會，並借《莊子》壺子戲季咸的故事，說明「氣隨心轉，心不為氣所困」的修煉極致。',
   },
+  {
+    slug: '有身——食衣住行',
+    title: '有身——食衣住行',
+    author: '李雅卿',
+    category: '心法原則',
+    date: '2026.05.23',
+    summary: '既有此身，便有食衣住行的功課。儒釋道三家對養身各有取徑，然練氣練拳之後，身體自會排斥不合宜的飲食、衣物與環境——把自主權還給身體，它便會告訴你該吃什麼、穿什麼、住在哪裡、怎麼走路。',
+  },
 ]
 
 export function getArticleBySlug(slug: string): ArticleInfo | undefined {
