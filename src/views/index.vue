@@ -78,6 +78,19 @@ function withKeyword(path: string): string {
               分享
             </button>
             <a href="/favorites" class="quick-link-favorites">我的最愛</a>
+            <button
+              type="button"
+              class="quick-link-rss"
+              data-rss-copy-button
+              data-rss-url="https://real.bestian.tw/rss.xml"
+              aria-label="複製RSS訂閱網址到剪貼簿"
+              title="複製RSS訂閱網址到剪貼簿"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14" aria-hidden="true">
+                <path fill="currentColor" d="M6.18 15.64a2.18 2.18 0 1 1 0 4.36 2.18 2.18 0 0 1 0-4.36zM4 4.44A19.56 19.56 0 0 1 23.56 24h-3.1A16.46 16.46 0 0 0 4 7.54V4.44zm0 5.66a13.9 13.9 0 0 1 13.9 13.9h-3.1A10.8 10.8 0 0 0 4 13.2v-3.1z"/>
+              </svg>
+              <span class="quick-link-label">RSS訂閱</span>
+            </button>
           </div>
 
           <div
@@ -125,6 +138,19 @@ function withKeyword(path: string): string {
             分享
           </button>
           <a href="/favorites" class="quick-link-favorites">我的最愛</a>
+          <button
+            type="button"
+            class="quick-link-rss"
+            data-rss-copy-button
+            data-rss-url="https://real.bestian.tw/rss.xml"
+            aria-label="複製RSS訂閱網址到剪貼簿"
+            title="複製RSS訂閱網址到剪貼簿"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14" aria-hidden="true">
+              <path fill="currentColor" d="M6.18 15.64a2.18 2.18 0 1 1 0 4.36 2.18 2.18 0 0 1 0-4.36zM4 4.44A19.56 19.56 0 0 1 23.56 24h-3.1A16.46 16.46 0 0 0 4 7.54V4.44zm0 5.66a13.9 13.9 0 0 1 13.9 13.9h-3.1A10.8 10.8 0 0 0 4 13.2v-3.1z"/>
+            </svg>
+            <span class="quick-link-label">RSS訂閱</span>
+          </button>
         </div>
       </section>
     </main>

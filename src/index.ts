@@ -6,8 +6,9 @@ import IndexView from './views/index.vue'
 import CategoryView from './views/category.vue'
 import ArticleView from './views/article.vue'
 import FavoritesView from './views/favorites.vue'
-import { getArticleBySlug, getArticlesByCategory } from './data/articles'
+import { articles, getArticleBySlug, getArticlesByCategory } from './data/articles'
 import { getHead, renderHeadTags } from './ssr/heads'
+import { buildRssXml } from './ssr/rss'
 
 type Bindings = {
   ASSETS?: {
@@ -35,6 +36,7 @@ function buildPage(headTags: string, bodyHtml: string): string {
     <script type="module" src="/js/favorites-page.js"></script>
     <script type="module" src="/js/list-search.js"></script>
     <script type="module" src="/js/font-size-toggle.js"></script>
+    <script type="module" src="/js/rss-copy.js"></script>
   </body>
 </html>`
 }
@@ -123,6 +125,14 @@ app.get('/favorites', async (c) => {
   const bodyHtml = await renderToString(vueApp)
   const headTags = renderHeadTags(getHead('/favorites'), '/favorites')
   return c.html(buildPage(headTags, bodyHtml))
+})
+
+app.get('/rss.xml', (c) => {
+  const xml = buildRssXml(articles)
+  return c.body(xml, 200, {
+    'Content-Type': 'application/rss+xml; charset=utf-8',
+    'Cache-Control': 'public, max-age=600',
+  })
 })
 
 // 靜態資源 fallback：/css/*.css、圖片等未匹配路由交給 ASSETS 處理

@@ -14,6 +14,7 @@ import { resolve, dirname } from 'path'
 import { marked } from 'marked'
 import { articles, categories, getArticlesByCategory } from '../src/data/articles'
 import { getHead, renderHeadTags } from '../src/ssr/heads'
+import { buildRssXml } from '../src/ssr/rss'
 import { createServer } from 'vite'
 import vue from '@vitejs/plugin-vue'
 
@@ -52,6 +53,7 @@ function buildPage(headTags: string, bodyHtml: string): string {
     <script type="module" src="/js/favorites-page.js"></script>
     <script type="module" src="/js/list-search.js"></script>
     <script type="module" src="/js/font-size-toggle.js"></script>
+    <script type="module" src="/js/rss-copy.js"></script>
   </body>
 </html>`
 }
@@ -102,6 +104,14 @@ async function prerenderIndex(IndexView: object) {
   const headTags = renderHeadTags(getHead('/'), '/')
   const html = buildPage(headTags, bodyHtml)
   writeHtml(resolve(WWW, 'index.html'), html)
+}
+
+function prerenderRssFeed() {
+  const xml = buildRssXml(articles)
+  const outputPath = resolve(WWW, 'rss.xml')
+  ensureDir(outputPath)
+  writeFileSync(outputPath, xml, 'utf-8')
+  console.log(`✓ 已生成：${outputPath.replace(ROOT, '')}`)
 }
 
 async function prerenderFavorites(FavoritesView: object) {
@@ -187,6 +197,7 @@ async function main() {
 
     await prerenderIndex(IndexView)
     await prerenderFavorites(FavoritesView)
+    prerenderRssFeed()
     cleanStaleCategoryPages()
     for (const category of categories) {
       await prerenderCategory(CategoryView, category)
