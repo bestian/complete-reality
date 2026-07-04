@@ -78,10 +78,47 @@ function setFavoriteButtonState(button, saved) {
   button.textContent = saved ? '★ 已收藏' : '☆ 收藏'
 }
 
-async function copyToClipboard(url, showToast) {
+function escapeHtml(value) {
+  return value.replace(/[&<>"']/g, (char) => ({
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;',
+  })[char])
+}
+
+function buildShareText(meta, url) {
+  const description = meta.description ? `\n\n${meta.description}` : ''
+  return `[${meta.title}](${url})${description}`
+}
+
+function buildShareHtml(meta, url) {
+  const description = meta.description ? `<p>${escapeHtml(meta.description)}</p>` : ''
+  return `<p><a href="${escapeHtml(url)}">${escapeHtml(meta.title)}</a></p>${description}`
+}
+
+async function copyToClipboard(meta, url, showToast) {
+  const text = buildShareText(meta, url)
+
+  if (navigator.clipboard && navigator.clipboard.write && typeof ClipboardItem === 'function') {
+    try {
+      await navigator.clipboard.write([
+        new ClipboardItem({
+          'text/plain': new Blob([text], { type: 'text/plain' }),
+          'text/html': new Blob([buildShareHtml(meta, url)], { type: 'text/html' }),
+        }),
+      ])
+      showToast('已複製連結')
+      return
+    } catch {
+      // fall through to plain-text fallback
+    }
+  }
+
   if (navigator.clipboard && navigator.clipboard.writeText) {
     try {
-      await navigator.clipboard.writeText(url)
+      await navigator.clipboard.writeText(text)
       showToast('已複製連結')
       return
     } catch {
@@ -100,7 +137,7 @@ function setupShareButton(page, showToast) {
     const url = new URL(meta.path, window.location.origin).href
     const shareData = {
       title: meta.title,
-      text: meta.description || meta.title,
+      text: `${meta.description || meta.title}\n${url}`,
       url,
     }
 
@@ -114,7 +151,7 @@ function setupShareButton(page, showToast) {
       }
     }
 
-    await copyToClipboard(url, showToast)
+    await copyToClipboard(meta, url, showToast)
   })
 }
 
