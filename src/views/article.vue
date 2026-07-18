@@ -5,13 +5,9 @@ defineProps<{
   title: string
   description: string
   path: string
-  author: string
+  author?: string
   category?: string
 }>()
-
-function injectAuthor(contentHtml: string, author: string): string {
-  return contentHtml.replace('</h2>', `<span class="author ">作者：${author}</span></h2>`)
-}
 
 function categoryPath(category: string): string {
   return `/category/${encodeURIComponent(category)}`
@@ -81,7 +77,8 @@ function categoryPath(category: string): string {
       </div>
 
       <!-- 文章正文 -->
-      <article class="article-body" v-html="injectAuthor(contentHtml, author)" />
+      <p v-if="author" class="article-author">本文作者：{{ author }}</p>
+      <article class="article-body" v-html="contentHtml" />
 
       <!-- 底部分隔線 + 返回 -->
       <footer class="article-footer">
