@@ -35,7 +35,7 @@ The same HTML shell (`buildPage(headTags, bodyHtml)`) is duplicated in two place
 
 `wrangler.jsonc` binds `./www/` as `ASSETS`. The Hono `app.get('*')` fallback delegates to `c.env.ASSETS.fetch`, and Cloudflare serves static assets *before* invoking the Worker. So:
 
-1. `npm run prerender` writes `www/index.html`, `www/favorites/index.html`, `www/category/<cat>/index.html`, and `www/article/<slug>/index.html`.
+1. `npm run prerender` writes `www/index.html`, `www/favorites/index.html`, `www/category/<cat>/index.html`, `www/article/<slug>/index.html`, plus `www/rss.xml` (built by `src/ssr/rss.ts`) and `www/sitemap.xml` (built by `src/ssr/sitemap.ts`; both also have Worker fallback routes in `src/index.ts`).
 2. In production those static files are served directly — the Worker SSR routes in `src/index.ts` only run for paths that have no prerendered file (e.g. a new article whose markdown exists but wasn't included in the last prerender).
 
 This means **prerender must be re-run whenever you add/remove an article or change a Vue view**, or stale HTML will be served.

@@ -6,9 +6,10 @@ import IndexView from './views/index.vue'
 import CategoryView from './views/category.vue'
 import ArticleView from './views/article.vue'
 import FavoritesView from './views/favorites.vue'
-import { articles, getArticleBySlug, getArticlesByCategory } from './data/articles'
+import { articles, categories, getArticleBySlug, getArticlesByCategory } from './data/articles'
 import { getHead, renderHeadTags } from './ssr/heads'
 import { buildRssXml } from './ssr/rss'
+import { buildSitemapXml } from './ssr/sitemap'
 
 type Bindings = {
   ASSETS?: {
@@ -131,6 +132,14 @@ app.get('/rss.xml', (c) => {
   const xml = buildRssXml(articles)
   return c.body(xml, 200, {
     'Content-Type': 'application/rss+xml; charset=utf-8',
+    'Cache-Control': 'public, max-age=600',
+  })
+})
+
+app.get('/sitemap.xml', (c) => {
+  const xml = buildSitemapXml(articles, categories)
+  return c.body(xml, 200, {
+    'Content-Type': 'application/xml; charset=utf-8',
     'Cache-Control': 'public, max-age=600',
   })
 })

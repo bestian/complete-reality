@@ -15,6 +15,7 @@ import { marked } from 'marked'
 import { articles, categories, getArticlesByCategory } from '../src/data/articles'
 import { getHead, renderHeadTags } from '../src/ssr/heads'
 import { buildRssXml } from '../src/ssr/rss'
+import { buildSitemapXml } from '../src/ssr/sitemap'
 import { createServer } from 'vite'
 import vue from '@vitejs/plugin-vue'
 
@@ -114,6 +115,14 @@ function prerenderRssFeed() {
   console.log(`✓ 已生成：${outputPath.replace(ROOT, '')}`)
 }
 
+function prerenderSitemap() {
+  const xml = buildSitemapXml(articles, categories)
+  const outputPath = resolve(WWW, 'sitemap.xml')
+  ensureDir(outputPath)
+  writeFileSync(outputPath, xml, 'utf-8')
+  console.log(`✓ 已生成：${outputPath.replace(ROOT, '')}`)
+}
+
 async function prerenderFavorites(FavoritesView: object) {
   const vueApp = createSSRApp(FavoritesView)
   const bodyHtml = await renderToString(vueApp)
@@ -198,6 +207,7 @@ async function main() {
     await prerenderIndex(IndexView)
     await prerenderFavorites(FavoritesView)
     prerenderRssFeed()
+    prerenderSitemap()
     cleanStaleCategoryPages()
     for (const category of categories) {
       await prerenderCategory(CategoryView, category)
