@@ -167,8 +167,12 @@ h1.ui.header.site-title {
     display: none;
   }
 }
-/* 列印 */
+/* 列印（預設 A4 直式） */
 @media print {
+  @page {
+    size: A4 portrait;
+    margin: 1.8cm 1.6cm;
+  }
   *,
   *::before,
   *::after {
@@ -178,6 +182,12 @@ h1.ui.header.site-title {
   html {
     font-size: 12pt;
   }
+  html,
+  body {
+    /* 螢幕版的 overflow-x: hidden 會讓部分瀏覽器只印出第一頁 */
+    overflow: visible !important;
+    height: auto !important;
+  }
   body {
     background: #fff !important;
     color: #000 !important;
@@ -185,9 +195,37 @@ h1.ui.header.site-title {
     line-height: 1.6;
   }
   .page {
+    /* flex 直排在分頁時容易出錯，列印改回 block */
+    display: block !important;
     max-width: none !important;
     margin: 0 !important;
-    padding: 0.5cm 0.8cm !important;
+    padding: 0 !important;
+    overflow: visible !important;
+  }
+  /* 所有操作用的按鈕與導覽，列印時一律不出現 */
+  .quick-links,
+  .font-size-toggle,
+  .quick-share-button,
+  .quick-favorite-button,
+  .quick-print-button,
+  .quick-link-favorites,
+  .quick-link-rss,
+  .ui.breadcrumb.breadcrumb-nav,
+  .back-link,
+  .list-search-island,
+  .article-swipe-actions,
+  .article-swipe-hint,
+  .article-swipe-toast {
+    display: none !important;
+  }
+  /* 滑動手勢用的位移與底色，列印時歸零 */
+  .article-page {
+    overflow: visible !important;
+  }
+  .article-gesture-frame {
+    transform: none !important;
+    transition: none !important;
+    background: none !important;
   }
   .site-header {
     background: none !important;
@@ -234,12 +272,56 @@ h1.ui.header.site-title {
     font-weight: normal;
     word-break: break-all;
   }
+  /* 字級固定，不受讀者的大小字設定影響 */
+  .article-body,
+  .page[data-font-size=large] .article-body {
+    font-size: 12pt !important;
+    line-height: 1.7 !important;
+    color: #000 !important;
+  }
+  .article-author {
+    top: 0;
+    color: #333 !important;
+    font-size: 10pt;
+  }
+  .article-body p {
+    margin-bottom: 0.9em;
+    text-align: justify;
+    orphans: 2;
+    widows: 2;
+  }
   .article-body h1,
   .article-body h2,
   .article-body h3 {
     color: #000 !important;
+    margin-top: 1.4em;
     break-after: avoid;
     page-break-after: avoid;
+    break-inside: avoid;
+  }
+  .article-body h1 {
+    font-size: 17pt;
+    border-bottom-color: #000 !important;
+  }
+  .article-body h2 {
+    font-size: 14.5pt;
+    border-bottom-color: #999 !important;
+  }
+  .article-body h3 {
+    font-size: 13pt;
+  }
+  .article-body ul,
+  .article-body ol {
+    margin-bottom: 0.9em;
+  }
+  .article-body li {
+    break-inside: avoid;
+  }
+  .article-body img {
+    max-width: 100% !important;
+    max-height: 18cm;
+    break-inside: avoid;
+    page-break-inside: avoid;
   }
   .article-body a[href^=http]::after {
     content: " (" attr(href) ")";
@@ -251,6 +333,26 @@ h1.ui.header.site-title {
     border-left-color: #666 !important;
     background: #f9f9f9 !important;
     color: #000 !important;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+  .article-footer {
+    margin-top: 1.5rem;
+    break-inside: avoid;
+  }
+  .article-footer .ui.divider {
+    border-top-color: #999 !important;
+  }
+  .article-license-link {
+    color: #333 !important;
+    font-size: 9pt;
+  }
+  /* 出處只在紙本上出現 */
+  .article-print-source {
+    display: inline !important;
+    color: #333 !important;
+    font-size: 9pt;
+    word-break: break-all;
   }
   .site-footer {
     margin-top: 1.5rem;

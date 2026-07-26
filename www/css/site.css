@@ -319,6 +319,32 @@ h1.ui.header.site-title {
   border-color: rgba(126, 87, 194, 0.46);
 }
 
+.quick-print-button {
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.32rem;
+  border: 1px solid rgba(155, 123, 90, 0.35);
+  border-radius: 999px;
+  background: rgba(212, 184, 150, 0.14);
+  color: var(--heading);
+  font-family: inherit;
+  font-size: 0.88rem;
+  letter-spacing: 0.04em;
+  padding: 0.35rem 0.72rem;
+  cursor: pointer;
+  transition: background-color 0.2s, border-color 0.2s;
+}
+
+.quick-print-button:hover {
+  background: rgba(212, 184, 150, 0.28);
+  border-color: rgba(155, 123, 90, 0.6);
+}
+
+.quick-print-button svg {
+  display: block;
+}
+
 .quick-favorite-button.is-saved {
   border-color: rgba(126, 87, 194, 0.56);
   background: rgba(126, 87, 194, 0.16);

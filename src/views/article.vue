@@ -73,6 +73,18 @@ function categoryPath(category: string): string {
         >
           ☆ 收藏
         </button>
+        <button
+          type="button"
+          class="quick-print-button"
+          data-print-button
+          aria-label="列印本文"
+          title="列印本文"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="15" height="15" aria-hidden="true">
+            <path fill="currentColor" d="M7 3h10v4H7zm12 5H5a3 3 0 0 0-3 3v6h4v3h12v-3h4v-6a3 3 0 0 0-3-3zm-3 10H8v-4h8zm2.5-6.2a1.05 1.05 0 1 1 0-2.1 1.05 1.05 0 0 1 0 2.1z"/>
+          </svg>
+          列印
+        </button>
         <a href="/favorites" class="quick-link-favorites">我的最愛</a>
       </div>
 
@@ -96,6 +108,7 @@ function categoryPath(category: string): string {
               class="article-license-image"
               loading="lazy"
             >
+            <span class="article-print-source">出處：流水全真https://real.bestian.tw</span>
             <span>本站文章皆以 CC-BY-SA-4.0 創用授權分享</span>
           </a>
         </div>

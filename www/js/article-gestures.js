@@ -180,6 +180,15 @@ function setupFavoriteButton(page, showToast) {
   })
 }
 
+function setupPrintButton(page) {
+  const printButton = page.querySelector('[data-print-button]')
+  if (!printButton) return
+
+  printButton.addEventListener('click', () => {
+    window.print()
+  })
+}
+
 function setupSwipeGesture(page, showToast) {
   const frame = page.querySelector('.article-gesture-frame')
   if (!frame || !canUseSwipeGesture()) return
@@ -298,6 +307,7 @@ function setupArticlePage(page) {
   const showToast = createToastController(page.querySelector('.article-swipe-toast'))
   setupShareButton(page, showToast)
   setupFavoriteButton(page, showToast)
+  setupPrintButton(page)
   setupSwipeGesture(page, showToast)
 }
 

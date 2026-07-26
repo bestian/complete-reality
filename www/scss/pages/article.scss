@@ -186,6 +186,11 @@
   text-decoration: underline;
 }
 
+/* 只在列印時出現（列印樣式見 rwd.scss 的 @media print） */
+.article-print-source {
+  display: none;
+}
+
 .article-license-image {
   display: block;
   width: 6.5rem;
