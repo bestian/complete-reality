@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://real.bestian.tw/</loc>
-    <lastmod>2026-07-18</lastmod>
+    <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -32,9 +32,15 @@
   </url>
   <url>
     <loc>https://real.bestian.tw/category/%E6%8E%9B%E5%96%AE%E6%96%87%E9%9B%86/</loc>
-    <lastmod>2026-07-18</lastmod>
+    <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://real.bestian.tw/article/%E6%9B%BF%E5%AD%A9%E5%AD%90%E6%B4%BB%E3%80%81%E9%9A%A8%E5%AD%A9%E5%AD%90%E6%B4%BB%E3%80%81%E9%99%AA%E5%AD%A9%E5%AD%90%E6%B4%BB/</loc>
+    <lastmod>2026-07-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://real.bestian.tw/article/%E7%A7%A9%E5%BA%8F%E8%88%87%E5%A4%B1%E5%BA%8F/</loc>
