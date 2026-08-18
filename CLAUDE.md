@@ -57,7 +57,7 @@ Both prerender (`resolveArticleMarkdownPath`) and runtime SSR (the `bundledArtic
 
 ### HEAD / SEO
 
-All `<title>`, meta, OG tags, and per-route stylesheet links come from `src/ssr/heads.ts`. The `getStylesheetsForPath` switch picks which page-specific CSS to include — when adding a new top-level route, add a branch there. Article OG images default to `https://moedict.tw/<title>.png` (萌典字圖 by article title).
+All `<title>`, meta, OG tags, and per-route stylesheet links come from `src/ssr/heads.ts`. The `getStylesheetsForPath` switch picks which page-specific CSS to include — when adding a new top-level route, add a branch there. Article OG images use `https://moedict.tw/<encoded-title>.png`; other pages use the site's square `images/main-img.jpeg`. RSS always exposes the stable canonical-site image through channel and Media RSS metadata so feed readers do not fall back to the article OG image.
 
 ### Styles
 

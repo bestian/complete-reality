@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:media="http://search.yahoo.com/mrss/">
   <channel>
     <title>流水全真──以佛煉心、以儒應世、以道護體</title>
     <link>https://real.bestian.tw/</link>
     <atom:link href="https://real.bestian.tw/rss.xml" rel="self" type="application/rss+xml" />
     <description>流水全真，探索修身養性之道，融合佛、儒、道三家智慧。</description>
     <language>zh-Hant</language>
+    <image>
+      <url>https://real.bestian.tw/images/main-img.jpeg</url>
+      <title>流水全真──以佛煉心、以儒應世、以道護體</title>
+      <link>https://real.bestian.tw/</link>
+    </image>
     <lastBuildDate>Sun, 26 Jul 2026 00:00:00 GMT</lastBuildDate>
     <item>
       <title>替孩子活、隨孩子活、陪孩子活</title>
@@ -14,6 +19,7 @@
       <pubDate>Sun, 26 Jul 2026 00:00:00 GMT</pubDate>
       <dc:creator>唐宗浩</dc:creator>
       <category>掛單文集</category>
+      <media:content url="https://real.bestian.tw/images/main-img.jpeg" type="image/jpeg" medium="image" width="1254" height="1254" />
       <description>親子界限隨孩子成長而動態改變。嬰幼兒時父母須「替孩子活」，但若一味控制會扼殺自主；另一方面，若一味「隨孩子活」放任滿足，則讓孩子失去依靠。真正的「陪孩子活」是互為主體：既守住必要界限，也保留探索空間，依孩子的能力逐步把人生主導權還給他——在他需要時靠近，在他有能力時退後。衝突時兼顧感受與問題解決。</description>
     </item>
     <item>
@@ -23,6 +29,7 @@
       <pubDate>Sat, 18 Jul 2026 00:00:00 GMT</pubDate>
       <dc:creator>唐宗浩</dc:creator>
       <category>掛單文集</category>
+      <media:content url="https://real.bestian.tw/images/main-img.jpeg" type="image/jpeg" medium="image" width="1254" height="1254" />
       <description>以愛、平等、自由與無懼為關係秩序的圓心，辨析秩序、控制與被控制的不對稱，以及憤怒、破壞與逃避造成的失序；守中致靜，安住自己，回歸秩序。</description>
     </item>
     <item>
@@ -32,6 +39,7 @@
       <pubDate>Sun, 14 Jun 2026 00:00:00 GMT</pubDate>
       <dc:creator>李雅卿</dc:creator>
       <category>心法原則</category>
+      <media:content url="https://real.bestian.tw/images/main-img.jpeg" type="image/jpeg" medium="image" width="1254" height="1254" />
       <description>我曾幾度想出家，直到看清那是想藉以逃避世界的不合己意，才安住在家。佛家明立僧團卻知身出家不等於心出家，道家本講在世而不為世所累，儒家以人倫為本反對出家——三家對照下，我看見內在陰影多來自「關係」，唯有安住關係中直面圓滿，才得解脫。於是老實安住此世此家，借三家義理對治貪瞋癡與輕慢，與自己、與他人逐步和好。這條路很長，要用一生來走，卻行來不寂寞。</description>
     </item>
     <item>
@@ -41,6 +49,7 @@
       <pubDate>Sun, 31 May 2026 00:00:00 GMT</pubDate>
       <dc:creator>李雅卿</dc:creator>
       <category>心法原則</category>
+      <media:content url="https://real.bestian.tw/images/main-img.jpeg" type="image/jpeg" medium="image" width="1254" height="1254" />
       <description>全球化分工的時代不能不談財貨。儒家辨「義不義」、佛家問「貪不貪」、道家觀「順不順」，三家皆指向同一處：財富本身不是問題，人對財富的態度才是重點。借父母以買菜、付帳、選衣的身教啟蒙財務智慧，談「夠用就好」、不輕商不仇富，以及在資本時代讓金錢留在媒介位置、以真心召喚真心，終歸內在的心理自由與富足。</description>
     </item>
     <item>
@@ -50,6 +59,7 @@
       <pubDate>Thu, 28 May 2026 00:00:00 GMT</pubDate>
       <dc:creator>李雅卿</dc:creator>
       <category>心法原則</category>
+      <media:content url="https://real.bestian.tw/images/main-img.jpeg" type="image/jpeg" medium="image" width="1254" height="1254" />
       <description>人活在世上無時無刻不在關係之中。儒家在人倫中修身，佛家於緣起中不執，道家順自然而相忘——進路不同，皆教導人認清角色而不被綁死。借父母「審時度勢、安身立命」的身教，談如何在「觀照」與「關照」之間動態平衡，讓意義在每一次「知→感→觀→行/止」的循環中自然生發。</description>
     </item>
     <item>
@@ -59,6 +69,7 @@
       <pubDate>Sat, 23 May 2026 00:00:00 GMT</pubDate>
       <dc:creator>李雅卿</dc:creator>
       <category>心法原則</category>
+      <media:content url="https://real.bestian.tw/images/main-img.jpeg" type="image/jpeg" medium="image" width="1254" height="1254" />
       <description>既有此身，便有食衣住行的功課。儒釋道三家對養身各有取徑，然練氣練拳之後，身體自會排斥不合宜的飲食、衣物與環境——把自主權還給身體，它便會告訴你該吃什麼、穿什麼、住在哪裡、怎麼走路。</description>
     </item>
     <item>
@@ -68,6 +79,7 @@
       <pubDate>Sat, 16 May 2026 00:00:00 GMT</pubDate>
       <dc:creator>李雅卿</dc:creator>
       <category>心法原則</category>
+      <media:content url="https://real.bestian.tw/images/main-img.jpeg" type="image/jpeg" medium="image" width="1254" height="1254" />
       <description>呼吸是生命須臾不離的活動，也是道佛儒三家共同重視的入門。分享以呼吸補能、轉圜情緒、自癒傷病、感知周遭的日常體會，並借《莊子》壺子戲季咸的故事，說明「氣隨心轉，心不為氣所困」的修煉極致。</description>
     </item>
     <item>
@@ -77,6 +89,7 @@
       <pubDate>Fri, 15 May 2026 00:00:00 GMT</pubDate>
       <dc:creator>李雅卿</dc:creator>
       <category>功法小技</category>
+      <media:content url="https://real.bestian.tw/images/main-img.jpeg" type="image/jpeg" medium="image" width="1254" height="1254" />
       <description>介紹十二經脈的位置與按摩手法，幫助調理身體機能、日常保健、養顏美容。</description>
     </item>
     <item>
@@ -86,6 +99,7 @@
       <pubDate>Fri, 15 May 2026 00:00:00 GMT</pubDate>
       <dc:creator>李雅卿</dc:creator>
       <category>功法小技</category>
+      <media:content url="https://real.bestian.tw/images/main-img.jpeg" type="image/jpeg" medium="image" width="1254" height="1254" />
       <description>源自古代道士為宮廷設計的養生功法，全套約三十分鐘，涵蓋臉頭、軀幹、腿腳、上肢與平甩收功，按摩後神清氣爽、周身舒泰，兼具美容與保健效果，站坐躺皆可行。</description>
     </item>
     <item>
@@ -95,6 +109,7 @@
       <pubDate>Wed, 13 May 2026 00:00:00 GMT</pubDate>
       <dc:creator>李雅卿</dc:creator>
       <category>心法原則</category>
+      <media:content url="https://real.bestian.tw/images/main-img.jpeg" type="image/jpeg" medium="image" width="1254" height="1254" />
       <description>修道無須隱居或翻天覆地，只要把注意力從外在轉回自我改造，便已上路。全真派是講求「性（心行）、命（身體）雙修，三家一貫，重在知行合一、為學日益、為道日損。</description>
     </item>
     <item>
@@ -104,6 +119,7 @@
       <pubDate>Thu, 30 Apr 2026 00:00:00 GMT</pubDate>
       <dc:creator>李雅卿</dc:creator>
       <category>功法小技</category>
+      <media:content url="https://real.bestian.tw/images/main-img.jpeg" type="image/jpeg" medium="image" width="1254" height="1254" />
       <description>3C 時代孩子容易用眼過度，如何避免得近視呢？分享「陪孩子看天」的實用小秘訣：看雲、編故事、享受光影，自然讓孩子養成抬頭遠眺、調整焦距的習慣。</description>
     </item>
     <item>
@@ -113,6 +129,7 @@
       <pubDate>Thu, 30 Apr 2026 00:00:00 GMT</pubDate>
       <dc:creator>李雅卿</dc:creator>
       <category>功法小技</category>
+      <media:content url="https://real.bestian.tw/images/main-img.jpeg" type="image/jpeg" medium="image" width="1254" height="1254" />
       <description>一個小技巧可避免大部分運動傷害：在呼氣時才用力、自然呼吸、不憋氣——肌肉放鬆，副交感神經活躍，經脈伸展更深沉。</description>
     </item>
     <item>
@@ -122,6 +139,7 @@
       <pubDate>Thu, 30 Apr 2026 00:00:00 GMT</pubDate>
       <dc:creator>李雅卿</dc:creator>
       <category>功法小技</category>
+      <media:content url="https://real.bestian.tw/images/main-img.jpeg" type="image/jpeg" medium="image" width="1254" height="1254" />
       <description>清晨深呼吸適合入門，面光垂手，吸氣抬手、閉氣合掌、呼氣落手，配合默數節律；進階者可循道家逆呼吸法行小周天，九次即可撫平思緒、安定迎接一日。</description>
     </item>
     <item>
@@ -131,6 +149,7 @@
       <pubDate>Tue, 28 Apr 2026 00:00:00 GMT</pubDate>
       <dc:creator>李雅卿</dc:creator>
       <category>功法小技</category>
+      <media:content url="https://real.bestian.tw/images/main-img.jpeg" type="image/jpeg" medium="image" width="1254" height="1254" />
       <description>來靜師父傳授的日常保健功法：以腳尖、腳跟輪跳振通全身經脈，幫助了我父親改善晚年腿部無力，也幫助了久坐的現代人調理氣血。</description>
     </item>
     <item>
@@ -140,6 +159,7 @@
       <pubDate>Tue, 28 Apr 2026 00:00:00 GMT</pubDate>
       <dc:creator>李雅卿</dc:creator>
       <category>功法小技</category>
+      <media:content url="https://real.bestian.tw/images/main-img.jpeg" type="image/jpeg" medium="image" width="1254" height="1254" />
       <description>現代人常因怕麻煩而喝水不足，影響全身代謝。分享一位師兄的妙招：把全天水量帶去上班，「每次起身先喝水再上廁所」，以膀胱自然提醒取代刻意記錄。</description>
     </item>
     <item>
@@ -149,6 +169,7 @@
       <pubDate>Mon, 27 Apr 2026 00:00:00 GMT</pubDate>
       <dc:creator>李雅卿</dc:creator>
       <category>緣起通論</category>
+      <media:content url="https://real.bestian.tw/images/main-img.jpeg" type="image/jpeg" medium="image" width="1254" height="1254" />
       <description>簡介台灣諸宗教道場與學脈，記下這座小島如何容納多元信仰、激盪出包容的民主文化。</description>
     </item>
     <item>
@@ -158,6 +179,7 @@
       <pubDate>Sat, 25 Apr 2026 00:00:00 GMT</pubDate>
       <dc:creator>李雅卿</dc:creator>
       <category>功法小技</category>
+      <media:content url="https://real.bestian.tw/images/main-img.jpeg" type="image/jpeg" medium="image" width="1254" height="1254" />
       <description>追憶與熊衛師父三十年的師承因緣，記下太極導引如何救我於危難之中，以及暌別師門至今的愧念與感恩。</description>
     </item>
     <item>
@@ -167,6 +189,7 @@
       <pubDate>Fri, 24 Apr 2026 00:00:00 GMT</pubDate>
       <dc:creator>李雅卿</dc:creator>
       <category>緣起通論</category>
+      <media:content url="https://real.bestian.tw/images/main-img.jpeg" type="image/jpeg" medium="image" width="1254" height="1254" />
       <description>南宋王重陽融儒釋道三家義理創立全真道，一言止殺，倡性命雙修、苦己濟世；以白話略述其源流、特質與現代傳承之念。</description>
     </item>
     <item>
@@ -175,6 +198,7 @@
       <guid isPermaLink="false">https://real.bestian.tw/video/%E7%B6%93%E8%84%88%E9%80%9A%E9%9C%87%E6%B3%95#2026.04.23</guid>
       <pubDate>Thu, 23 Apr 2026 00:00:00 GMT</pubDate>
       <category>功法小技</category>
+      <media:content url="https://real.bestian.tw/images/main-img.jpeg" type="image/jpeg" medium="image" width="1254" height="1254" />
       <description>道家幫助初入門者震通全身經絡的日常保健方式。無甚禁忌，唯飯後不宜。</description>
     </item>
     <item>
@@ -184,6 +208,7 @@
       <pubDate>Tue, 21 Apr 2026 00:00:00 GMT</pubDate>
       <dc:creator>李雅卿</dc:creator>
       <category>緣起通論</category>
+      <media:content url="https://real.bestian.tw/images/main-img.jpeg" type="image/jpeg" medium="image" width="1254" height="1254" />
       <description>記錄我從新聞工作者走入全真修行的因緣、師承與三十餘年未輟的體悟，並以數位方式傳承全真的初心。</description>
     </item>
     <item>
@@ -193,6 +218,7 @@
       <pubDate>Thu, 15 Mar 2018 00:00:00 GMT</pubDate>
       <dc:creator>李雅卿</dc:creator>
       <category>隨筆雜感</category>
+      <media:content url="https://real.bestian.tw/images/main-img.jpeg" type="image/jpeg" medium="image" width="1254" height="1254" />
       <description>烏來山的小天地，二十年間從荒地長成菜園、魚池與百合花圃，山與原住民庇護了土地，土地庇護著更小的動植物。</description>
     </item>
     <item>
@@ -202,6 +228,7 @@
       <pubDate>Tue, 05 Feb 2013 00:00:00 GMT</pubDate>
       <dc:creator>李雅卿</dc:creator>
       <category>隨筆雜感</category>
+      <media:content url="https://real.bestian.tw/images/main-img.jpeg" type="image/jpeg" medium="image" width="1254" height="1254" />
       <description>籬邊不請自來一株扶桑，怎麼剪、怎麼插，都頑強存活；原以為難種，卻處處生意盎然，讓人見識到生命的韌性。</description>
     </item>
     <item>
@@ -211,6 +238,7 @@
       <pubDate>Mon, 01 Oct 2012 00:00:00 GMT</pubDate>
       <dc:creator>李雅卿</dc:creator>
       <category>隨筆雜感</category>
+      <media:content url="https://real.bestian.tw/images/main-img.jpeg" type="image/jpeg" medium="image" width="1254" height="1254" />
       <description>芙蓉風華，一日三幻化——晨迎朝露，絳極離枝，功成身退，乃合天道。</description>
     </item>
     <item>
@@ -220,6 +248,7 @@
       <pubDate>Sun, 06 May 2012 00:00:00 GMT</pubDate>
       <dc:creator>李雅卿</dc:creator>
       <category>隨筆雜感</category>
+      <media:content url="https://real.bestian.tw/images/main-img.jpeg" type="image/jpeg" medium="image" width="1254" height="1254" />
       <description>在山上，要走路。走山路，是不說話的。</description>
     </item>
     <item>
@@ -229,6 +258,7 @@
       <pubDate>Wed, 25 Jan 2012 00:00:00 GMT</pubDate>
       <dc:creator>李雅卿</dc:creator>
       <category>隨筆雜感</category>
+      <media:content url="https://real.bestian.tw/images/main-img.jpeg" type="image/jpeg" medium="image" width="1254" height="1254" />
       <description>泰雅小孩說：天堂是一座美麗的山，所有愛的人都在身邊，還有吃不完的食物。退休後山居，發現自己活在天堂裡。</description>
     </item>
   </channel>

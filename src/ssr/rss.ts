@@ -3,6 +3,7 @@ import type { ArticleInfo } from '../data/articles'
 const SITE_URL = 'https://real.bestian.tw'
 const SITE_TITLE = '流水全真──以佛煉心、以儒應世、以道護體'
 const SITE_DESCRIPTION = '流水全真，探索修身養性之道，融合佛、儒、道三家智慧。'
+const FEED_IMAGE_URL = `${SITE_URL}/images/main-img.jpeg`
 
 function escapeXml(str: string): string {
   return str
@@ -60,6 +61,9 @@ export function buildRssXml(articles: ArticleInfo[]): string {
       if (article.category) {
         lines.push(`      <category>${escapeXml(article.category)}</category>`)
       }
+      lines.push(
+        `      <media:content url="${FEED_IMAGE_URL}" type="image/jpeg" medium="image" width="1254" height="1254" />`
+      )
       lines.push(`      <description>${escapeXml(article.summary)}</description>`)
       return `    <item>\n${lines.join('\n')}\n    </item>`
     })
@@ -68,13 +72,18 @@ export function buildRssXml(articles: ArticleInfo[]): string {
   const latestPubDate = sorted.length > 0 ? articleDateToRfc822(sorted[0].date) : new Date().toUTCString()
 
   return `<?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:media="http://search.yahoo.com/mrss/">
   <channel>
     <title>${escapeXml(SITE_TITLE)}</title>
     <link>${SITE_URL}/</link>
     <atom:link href="${SITE_URL}/rss.xml" rel="self" type="application/rss+xml" />
     <description>${escapeXml(SITE_DESCRIPTION)}</description>
     <language>zh-Hant</language>
+    <image>
+      <url>${FEED_IMAGE_URL}</url>
+      <title>${escapeXml(SITE_TITLE)}</title>
+      <link>${SITE_URL}/</link>
+    </image>
     <lastBuildDate>${latestPubDate}</lastBuildDate>
 ${items}
   </channel>

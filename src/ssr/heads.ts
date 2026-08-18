@@ -118,7 +118,7 @@ function getDefaultOgImageForPath(path: string): string | undefined {
   return undefined
 }
 
-/** 文章路徑 `/article/{標題}` 對應萌典字圖： https://moedict.tw/{標題}.png */
+/** 文章路徑 `/article/{標題}` 對應萌典字圖。 */
 function getMoedictOgImageFromArticlePath(path: string): string | undefined {
   if (!path.startsWith('/article/')) return undefined
   const raw = path.slice('/article/'.length)
@@ -130,7 +130,7 @@ function getMoedictOgImageFromArticlePath(path: string): string | undefined {
     title = raw
   }
   if (!title) return undefined
-  return `https://moedict.tw/${title}.png`
+  return `https://moedict.tw/${encodeURIComponent(title)}.png`
 }
 
 function decodePathSegment(segment: string): string | undefined {
