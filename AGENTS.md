@@ -1,10 +1,40 @@
-# CLAUDE.md
+# AGENTS.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file provides guidance to coding agents working in this repository.
 
 ## Project
 
 **流水全真 (Liushui · Complete Reality)** — a zh-Hant personal site for the writings of 李雅卿 (道號：流水). Cloudflare Workers + Hono + Vue 3 SSR, with prerendering as the primary delivery path.
+
+## Working agreement
+
+### Completion boundary
+
+- By default, finish a task after making the requested changes and validating them.
+- Do not commit, push, open or merge a pull request, close an issue, or deploy unless the developer explicitly asks for that action.
+- Treat all GitHub writes—including comments, labels, assignment, issue state changes, pushes, and pull requests—as requiring prior developer approval.
+
+### Commits
+
+- Only create a commit when explicitly requested.
+- Write commit messages in Traditional Chinese (正體中文).
+- For issue work, the commit message must include `close #<issue-number>` using the actual issue number. If no issue number is known, ask before committing rather than inventing one.
+
+### Generated files
+
+- Always regenerate and retain the affected prerendered files under `www/`; they are part of the intended change, not disposable build output.
+- When a commit is explicitly requested, include the affected `www/` prerendered files in the same commit as their source changes.
+
+### Validation and reporting
+
+- Run validation appropriate to the change, normally `npm run build` when prerendered output or application code is affected.
+- A successful command may still emit known warnings. Report every build warning clearly to the developer in the final response; do not silently omit it.
+
+### Scope discipline
+
+- Keep changes narrowly scoped to the requested task.
+- Do not change an existing design or product decision without explicit permission.
+- Avoid broad refactors and mass formatting. Do not rewrite unrelated files merely for stylistic consistency.
 
 ## Commands
 
