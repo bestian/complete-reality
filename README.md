@@ -31,6 +31,16 @@
 
 ## 開發指令
 
+本機開發使用 Node.js **24.22.1 以上**；`.nvmrc` 固定使用 24.22.1，
+`package.json` 的 `engines.node` 宣告最低版本。
+
+若使用 nvm，先在專案目錄安裝並切換版本：
+
+```bash
+nvm install
+nvm use
+```
+
 ### 安裝套件
 
 ```bash
@@ -54,6 +64,16 @@ npm run prerender
 ```bash
 npm run build
 ```
+
+### 相依套件安全檢查
+
+```bash
+npm audit
+```
+
+Vite、Wrangler 與 Cloudflare Vite plugin 雖屬開發相依套件，
+其漏洞仍可能影響開發機與 CI。更新後需執行完整建置並驗證開發服務，
+同時保留 `www/` 下重新產生的預渲染檔案。
 
 ### 部署到 Cloudflare
 
