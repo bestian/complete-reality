@@ -265,6 +265,14 @@ export const articles: ArticleInfo[] = [
     summary: '那時我將明白，長大的滋味是什麼。',
   },
   {
+    slug: '吟詩',
+    title: '吟詩',
+    author: '李雅卿',
+    category: '隨筆雜感',
+    date: '2026.11.10',
+    summary: '從呼吸觀照談古詩詞吟詠，分享學習河洛漢語的體會，並以錄音呈現國語與河洛語的不同聲韻，附上六首詩詞內文。',
+  },
+  {
     slug: '唱歌',
     title: '唱歌',
     author: '李雅卿',
