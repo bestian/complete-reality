@@ -59,6 +59,11 @@ npm run dev
 npm run prerender
 ```
 
+預渲染會先將 `public/` 遞迴合併至 `www/`，再產生文章與分類頁面。
+文章圖片放在 `public/images/`，音檔放在 `public/audio/`，
+內文分別以 `/images/<檔名>`、`/audio/<檔名>` 嵌入；建置後保留對應的 `www/` 資產與預渲染頁面。
+列印文章時隱藏音訊播放器，螢幕閱讀時仍可正常播放。
+
 ### 建置
 
 ```bash

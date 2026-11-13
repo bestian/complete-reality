@@ -256,6 +256,14 @@ export const articles: ArticleInfo[] = [
     date: '2026.10.29',
     summary: '心理治療有一段路必須自己走。從生活系統、人際關係與慣性反應出發，談如何放慢腳步、保留餘裕，透過事前預想、事中停頓與事後回顧培養覺察；在休養與重新投入生活之間持續觀察，從局部改變關係、建立界線，逐步走出自知之明的最後一哩路。',
   },
+  {
+    slug: '長大的滋味',
+    title: '長大的滋味',
+    author: '唐宗浩',
+    category: '掛單文集',
+    date: '2026.10.31',
+    summary: '那時我將明白，長大的滋味是什麼。',
+  },
 ]
 
 export function getArticleBySlug(slug: string): ArticleInfo | undefined {

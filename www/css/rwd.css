@@ -202,7 +202,8 @@ h1.ui.header.site-title {
     padding: 0 !important;
     overflow: visible !important;
   }
-  /* 所有操作用的按鈕與導覽，列印時一律不出現 */
+  /* 所有操作用的按鈕、導覽與音訊播放器，列印時一律不出現 */
+  audio,
   .quick-links,
   .font-size-toggle,
   .quick-share-button,
