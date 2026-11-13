@@ -264,6 +264,14 @@ export const articles: ArticleInfo[] = [
     date: '2026.10.31',
     summary: '那時我將明白，長大的滋味是什麼。',
   },
+  {
+    slug: '唱歌',
+    title: '唱歌',
+    author: '李雅卿',
+    category: '隨筆雜感',
+    date: '2026.11.13',
+    summary: '從童年與姊姊隨興歌唱的回憶，寫到教學時以歌聲陪伴孩子；並留下思念姊姊時寫成的〈輕笑〉與數首舊日旋律。',
+  },
 ]
 
 export function getArticleBySlug(slug: string): ArticleInfo | undefined {
